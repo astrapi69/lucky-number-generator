@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">lucky-number-generator</string>
+    <string name="eurojackpot">Eurojackpot</string>
+    <string name="lottery_6_of_49">Lottery 6 of 49</string>
+    <string name="keno">Keno</string>
+    <string name="custom_generation">Custom Generation</string>
+    <string name="supernumber">Super number</string>
+    <string name="generate_my_lucky_numbers">Lucky Numbers Go</string>
+    <string name="super_six_number">Super Six Number</string>
+</resources>
