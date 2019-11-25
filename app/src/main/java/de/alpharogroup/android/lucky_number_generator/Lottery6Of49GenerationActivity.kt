@@ -1,43 +1,64 @@
 package de.alpharogroup.android.lucky_number_generator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.random.number.RandomPrimitivesExtensions
 
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
 
+    lateinit var txtFirstNumber1Of49: EditText
+    lateinit var txtSecondNumber1Of49: EditText
+    lateinit var txtThirdNumber1Of49: EditText
+    lateinit var txtFourthNumber1Of49: EditText
+    lateinit var txtFifthNumber1Of49: EditText
+    lateinit var txtSixthNumber1Of49: EditText
+    lateinit var txtSuperNumber1Of49: EditText
+    lateinit var txtSuperSixNumber1Of49: EditText
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home)
+            onBackPressed()
+        return true
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lottery6_of49_generation)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        onInitialize()
+        disableEditTexts()
+    }
 
-        val first = findViewById<EditText>(R.id.firstNumber1Of49)
-        val second = findViewById<EditText>(R.id.secondNumber1Of49)
-        val third = findViewById<EditText>(R.id.thirdNumber1Of49)
-        val fourth = findViewById<EditText>(R.id.fourthNumber1Of49)
-        val fifth = findViewById<EditText>(R.id.fifthNumber1Of49)
-        val sixth = findViewById<EditText>(R.id.sixthNumber1Of49)
-        val superNumber1Of49 = findViewById<EditText>(R.id.superNumber1Of49)
-        val superSixNumber1Of49 = findViewById<EditText>(R.id.superSixNumber1Of49)
+    fun onInitialize() {
+        txtFirstNumber1Of49 = findViewById<EditText>(R.id.firstNumber1Of49)
+        txtSecondNumber1Of49 = findViewById<EditText>(R.id.secondNumber1Of49)
+        txtThirdNumber1Of49 = findViewById<EditText>(R.id.thirdNumber1Of49)
+        txtFourthNumber1Of49 = findViewById<EditText>(R.id.fourthNumber1Of49)
+        txtFifthNumber1Of49 = findViewById<EditText>(R.id.fifthNumber1Of49)
+        txtSixthNumber1Of49 = findViewById<EditText>(R.id.sixthNumber1Of49)
+        txtSuperNumber1Of49 = findViewById<EditText>(R.id.superNumber1Of49)
+        txtSuperSixNumber1Of49 = findViewById<EditText>(R.id.superSixNumber1Of49)
+    }
 
-        first.setEnabled(false)
-        second.setEnabled(false)
-        third.setEnabled(false)
-        fourth.setEnabled(false)
-        fifth.setEnabled(false)
-        sixth.setEnabled(false)
-        superNumber1Of49.setEnabled(false)
-        superSixNumber1Of49.setEnabled(false)
+
+    private fun disableEditTexts() {
+        txtFirstNumber1Of49.setEnabled(false)
+        txtSecondNumber1Of49.setEnabled(false)
+        txtThirdNumber1Of49.setEnabled(false)
+        txtFourthNumber1Of49.setEnabled(false)
+        txtFifthNumber1Of49.setEnabled(false)
+        txtSixthNumber1Of49.setEnabled(false)
+        txtSuperNumber1Of49.setEnabled(false)
+        txtSuperSixNumber1Of49.setEnabled(false)
     }
 
     fun onGenerate1Of49(view: View) {
-        val button = findViewById<Button>(R.id.btn_generate_my_lucky_numbers)
-        button.setOnClickListener{
-            onDraw()
-        }
+        onDraw()
     }
 
     fun onDraw() {
@@ -47,24 +68,15 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         val superNumber = DrawnLotteryNumbersExtensions.drawSuperNumber(lotteryNumbers, volume)
         val superSixNumber = RandomPrimitivesExtensions.randomIntBetween(1, 10)
 
-        val first = findViewById<EditText>(R.id.firstNumber1Of49)
-        val second = findViewById<EditText>(R.id.secondNumber1Of49)
-        val third = findViewById<EditText>(R.id.thirdNumber1Of49)
-        val fourth = findViewById<EditText>(R.id.fourthNumber1Of49)
-        val fifth = findViewById<EditText>(R.id.fifthNumber1Of49)
-        val sixth = findViewById<EditText>(R.id.sixthNumber1Of49)
-        val superNumber1Of49 = findViewById<EditText>(R.id.superNumber1Of49)
-        val superSixNumber1Of49 = findViewById<EditText>(R.id.superSixNumber1Of49)
-
         val toIntArray = lotteryNumbers.toIntArray()
-        first.setText(toIntArray[0].toString())
-        second.setText(toIntArray[1].toString())
-        third.setText(toIntArray[2].toString())
-        fourth.setText(toIntArray[3].toString())
-        fifth.setText(toIntArray[4].toString())
-        sixth.setText(toIntArray[5].toString())
-        superNumber1Of49.setText(superNumber.toString())
-        superSixNumber1Of49.setText(superSixNumber.toString())
-
+        txtFirstNumber1Of49.setText(toIntArray[0].toString())
+        txtSecondNumber1Of49.setText(toIntArray[1].toString())
+        txtThirdNumber1Of49.setText(toIntArray[2].toString())
+        txtFourthNumber1Of49.setText(toIntArray[3].toString())
+        txtFifthNumber1Of49.setText(toIntArray[4].toString())
+        txtSixthNumber1Of49.setText(toIntArray[5].toString())
+        txtSuperNumber1Of49.setText(superNumber.toString())
+        txtSuperSixNumber1Of49.setText(superSixNumber.toString())
     }
+
 }

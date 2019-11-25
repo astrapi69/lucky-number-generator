@@ -1,9 +1,9 @@
 package de.alpharogroup.android.lucky_number_generator
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,14 +18,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onEurojackpot(view: View) {
-
-    }
-
-    fun onKeno(view: View) {
-
+        val intent = Intent(this, EurojackpotGenerationActivity::class.java)
+        startActivity(intent)
     }
 
     fun onCustomGeneration(view: View) {
-
+        val intent = Intent(this, CustomGenerationActivity::class.java)
+        startActivity(intent)
     }
 }

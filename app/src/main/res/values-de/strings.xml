@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">lucky-number-generator</string>
+    <string name="app_name">Glückszahlen Generator</string>
     <string name="lottery_6_of_49">Lotto 6 of 49</string>
     <string name="eurojackpot">Euro Jackpot</string>
     <string name="keno">Keno</string>
@@ -8,4 +8,27 @@
     <string name="supernumber">Super Zahl</string>
     <string name="generate_my_lucky_numbers">Generiere meine Glückszahlen</string>
     <string name="super_six_number">Super Sechs Zahl</string>
+    <string name="hint_text_1_of_50_one">Erste Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_50_two">Zweite Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_50_three">Dritte Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_50_four">Vierte Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_50_five">Fünfte Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_10_one">Erste Sternzahl</string>
+    <string name="hint_text_1_of_10_two">Zweite Sternzahl</string>
+    <string name="euro_numbers">Eurozahlen</string>
+    <string name="numbers_to_draw">Anzahl der Zahlen</string>
+    <string name="min_volume">Kleinste Zahl</string>
+    <string name="max_volume">Größte Zahl</string>
+    <string name="iterations">Wiederholungen</string>
+    <string name="algorithm">Algorythmus</string>
+    <string-array name="algorithm_array">
+        <item>Default</item>
+        <item>Map</item>
+        <item>Set</item>
+    </string-array>
+    <string name="validation_not_empty">Bitte einen Wert eintragen</string>
+    <string name="validation_is_between_1_50">Der Wert sollte zwischen 1 bis 50</string>
+    <string name="validation_is_between_1_100">Der Wert sollte zwischen 1 bis 100</string>
+    <string name="validation_max_greater_than_min">Größte Zahl sollte größer sein als die Kleinste Zahl</string>
+    <string name="custom_generated_lucky_numbers">Deine individuellen Glückszahlen</string>
 </resources>

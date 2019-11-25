@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EurojackpotGenerationActivity">
+
+
+    <TextView
+        android:id="@+id/lbl_eurojackpot"
+        android:layout_width="@dimen/layout_eurojackpot_full_width_size"
+        android:layout_height="@dimen/layout_height_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:text="@string/eurojackpot"
+        android:textAlignment="center"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/firstNumber1Of50"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_one"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
+
+    <EditText
+        android:id="@+id/secondNumber1Of50"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_two"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/firstNumber1Of50"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
+
+    <EditText
+        android:id="@+id/thirdNumber1Of50"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_three"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/secondNumber1Of50"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
+
+    <EditText
+        android:id="@+id/fourthNumber1Of50"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_four"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/thirdNumber1Of50"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
+
+    <EditText
+        android:id="@+id/firstEuroNumber1Of10"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_four"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/lbl_euro_numbers"
+        app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
+
+    <EditText
+        android:id="@+id/secondEuroNumber1Of10"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_four"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/firstEuroNumber1Of10"
+        app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
+
+    <EditText
+        android:id="@+id/fifthNumber1Of50"
+        android:layout_width="@dimen/layout_width_box_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:ems="10"
+        android:hint="@string/hint_text_1_of_50_five"
+        android:inputType="none"
+        app:layout_constraintStart_toEndOf="@+id/fourthNumber1Of50"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
+
+    <TextView
+        android:id="@+id/lbl_euro_numbers"
+        android:layout_width="199dp"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:text="@string/euro_numbers"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
+
+    <Button
+        android:id="@+id/btn_generate_my_lucky_ejp_numbers"
+        android:layout_width="@dimen/layout_eurojackpot_full_width_size"
+        android:layout_height="@dimen/layout_height_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:onClick="onGenerate1of50Numbers"
+        android:text="@string/generate_my_lucky_numbers"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstEuroNumber1Of10" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

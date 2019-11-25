@@ -10,90 +10,99 @@
         android:id="@+id/lbl_lottery_6_of_49"
         android:layout_width="332dp"
         android:layout_height="43dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:text="@string/lottery_6_of_49"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/firstNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/secondNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/firstNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/thirdNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_height_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/secondNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/fourthNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/thirdNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/fifthNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/fourthNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/sixthNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/fifthNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
 
     <EditText
         android:id="@+id/superNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/lbl_supernumber"
         app:layout_constraintTop_toBottomOf="@+id/sixthNumber1Of49" />
 
     <EditText
         android:id="@+id/superSixNumber1Of49"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/layout_width_small_box_size"
+        android:layout_height="@dimen/layout_height_small_box_size"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/lbl_super_six_number"
         app:layout_constraintTop_toBottomOf="@+id/superNumber1Of49" />
@@ -102,12 +111,13 @@
         android:id="@+id/lbl_supernumber"
         android:layout_width="274dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:text="@string/supernumber"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="30sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstNumber1Of49" />
 
@@ -115,26 +125,27 @@
         android:id="@+id/lbl_super_six_number"
         android:layout_width="274dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:focusable="false"
         android:text="@string/super_six_number"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="30sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_supernumber" />
 
     <Button
-        android:id="@+id/btn_generate_my_lucky_numbers"
+        android:id="@+id/btn_generate_my_lucky_lotto_numbers"
         android:layout_width="329dp"
         android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
         android:onClick="onGenerate1Of49"
         android:text="@string/generate_my_lucky_numbers"
         android:textAllCaps="false"
-        android:textSize="24sp"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
