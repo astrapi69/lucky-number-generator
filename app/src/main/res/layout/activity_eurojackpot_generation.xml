@@ -26,7 +26,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_one"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
@@ -38,7 +37,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_two"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/firstNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
@@ -50,7 +48,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_three"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/secondNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
@@ -62,7 +59,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_four"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/thirdNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
@@ -74,7 +70,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_four"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/lbl_euro_numbers"
         app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
@@ -86,7 +81,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_four"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/firstEuroNumber1Of10"
         app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
@@ -98,7 +92,6 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginTop="@dimen/top_margin_size"
         android:ems="10"
-        android:hint="@string/hint_text_1_of_50_five"
         android:inputType="none"
         app:layout_constraintStart_toEndOf="@+id/fourthNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
