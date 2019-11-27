@@ -16,10 +16,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(project.property("ossrhUsername"))
-            storePassword "sp1r1t_1nt3ns1f13r!"
-            keyAlias "spirit_intensifier"
-            keyPassword "sp1r1t_1nt3ns1f13r!"
+            storeFile file(project.property("release.lucky.numbers.store.file"))
+            storePassword project.property("release.lucky.numbers.store.password")
+            keyAlias project.property("release.lucky.numbers.key.alias")
+            keyPassword project.property("release.lucky.numbers.key.password")
         }
     }
     buildTypes {
