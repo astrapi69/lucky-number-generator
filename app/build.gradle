@@ -55,11 +55,11 @@ dependencies {
     implementation "de.alpharogroup:lottery-core:5.7"
     implementation "de.alpharogroup:lottery-data:5.7"
     implementation "de.alpharogroup:randomizer-core:6.4"
-    implementation "de.alpharogroup:silly-collections:5.6"
-    implementation "de.alpharogroup:silly-strings:5.3.1"
+    implementation 'de.alpharogroup:silly-collections:5.8'
+    implementation "de.alpharogroup:silly-strings:5.4"
     implementation "de.alpharogroup:silly-math:1"
     implementation "org.apache.commons:commons-lang3:3.9"
     testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 }
