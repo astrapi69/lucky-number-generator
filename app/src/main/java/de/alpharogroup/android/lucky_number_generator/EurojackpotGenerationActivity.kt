@@ -18,10 +18,11 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
     lateinit var txtFirstEuroNumber1Of10: EditText
     lateinit var txtSecondEuroNumber1Of10: EditText
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home){
             onBackPressed()
-        return true
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 

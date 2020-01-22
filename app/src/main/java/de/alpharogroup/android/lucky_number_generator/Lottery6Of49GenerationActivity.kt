@@ -19,10 +19,11 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
     lateinit var txtSuperNumber1Of49: EditText
     lateinit var txtSuperSixNumber1Of49: EditText
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home){
             onBackPressed()
-        return true
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 

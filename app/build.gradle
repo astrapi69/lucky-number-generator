@@ -37,11 +37,16 @@ android {
         free {
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            debuggable = true
+            signingConfig signingConfigs.free
         }
     }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -69,6 +74,7 @@ dependencies {
     implementation "de.alpharogroup:silly-strings:$sillyStringsVersion"
     implementation "de.alpharogroup:silly-math:$sillyMathVersion"
     implementation "org.apache.commons:commons-lang3:3.9"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
     testImplementation "junit:junit:4.13"
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"

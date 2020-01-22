@@ -10,10 +10,11 @@ class CustomGenerationResultActivity : AppCompatActivity() {
     lateinit var luckyNumbers: String
     lateinit var txtCustomGenerated: EditText
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home){
             onBackPressed()
-        return true
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 
