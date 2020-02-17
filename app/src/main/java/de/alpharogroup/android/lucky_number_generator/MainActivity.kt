@@ -4,8 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountDatabase
+import de.alpharogroup.android.lucky_number_generator.data.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private var viewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onCustomGeneration(view: View) {
         val intent = Intent(this, CustomGenerationActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onLotteryNumberCountList(view: View) {
+        val intent = Intent(this, LotteryNumberCountListActivity::class.java)
         startActivity(intent)
     }
 }

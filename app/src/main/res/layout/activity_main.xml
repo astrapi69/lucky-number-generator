@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/left_margin_size"
         android:layout_marginBottom="@dimen/left_margin_size"
         android:background="@drawable/ic_main_icon"
-        android:text="Lucky Number Generator"
+        android:text="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -30,6 +30,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_eurojackpot" />
+
+    <Button
+        android:id="@+id/btn_lottery_number_count_list"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/layout_height_size"
+        android:layout_marginEnd="40dp"
+        android:onClick="onLotteryNumberCountList"
+        android:text="@string/lottery_number_count_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_custom_generation" />
 
     <Button
         android:id="@+id/btn_eurojackpot"

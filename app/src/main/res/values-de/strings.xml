@@ -31,4 +31,6 @@
     <string name="validation_is_between_1_100">Der Wert sollte zwischen 1 bis 100</string>
     <string name="validation_max_greater_than_min">Größte Zahl sollte größer sein als die Kleinste Zahl</string>
     <string name="custom_generated_lucky_numbers">Deine individuellen Glückszahlen</string>
+    <string name="lottery_number_count_label">Gespeicherte Zahlen</string>
+    <string name="title_activity_lottery_number_count_list">Lotto Zahlen Zählerliste</string>
 </resources>
