@@ -2,12 +2,11 @@
 
 buildscript {
     ext.kotlinVersion = "1.3.61"
-    ext.lombokVersion = "1.18.10"
-    ext.lotteryVersion = "5.8"
-    ext.randomizerVersion = "6.5"
-    ext.sillyCollectionsVersion = "5.8"
-    ext.sillyStringsVersion = "5.4"
-    ext.sillyMathVersion = "1"
+    ext.lotteryVersion = "5.9"
+    ext.randomizerVersion = "6.7"
+    ext.sillyCollectionsVersion = "8"
+    ext.sillyStringsVersion = "5.5"
+    ext.sillyMathVersion = "1.1"
     repositories {
         google()
         jcenter()
