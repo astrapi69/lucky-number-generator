@@ -1,52 +1,47 @@
 package de.alpharogroup.android.lucky_number_generator
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountAdapter
-import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountDatabase
-import de.alpharogroup.android.lucky_number_generator.data.MainViewModel
-import de.alpharogroup.collections.list.ListFactory
-import de.alpharogroup.collections.map.MapFactory
-
-import kotlinx.android.synthetic.main.content_lottery_number_count_list.*
-import java.util.*
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
 
 class LotteryNumberCountListActivity : AppCompatActivity() {
 
-    private var viewModel: MainViewModel? = null
+    private var viewModel: LotteryNumberCountViewModel? = null
 
-    private var personAdapter: LotteryNumberCountAdapter?= null
+    lateinit var recyclerView:  RecyclerView
 
+    lateinit var adapter: LotteryNumberCountAdapter
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home){
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        var dataBaseInstance =
-            LotteryNumberCountDatabase.getDatabase(
-                this
-            )
-        initViews()
-        setListeners()
-        observerViewModel()
-    }
+        setContentView(R.layout.content_lottery_number_count_list)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+        adapter = LotteryNumberCountAdapter(this)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-    private fun initViews() {
-        rvSavedRecords.layoutManager= LinearLayoutManager(this)
-        personAdapter =
-            LotteryNumberCountAdapter(this) {
-                it.let {
-                    viewModel?.delete(it)
-                }
-            }
-        rvSavedRecords.adapter = personAdapter
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        viewModel = ViewModelProvider(this).get(LotteryNumberCountViewModel::class.java)
+
+        observerViewModel()
     }
 
     private fun observerViewModel() {
@@ -60,48 +55,13 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     private fun handleData(data: List<LotteryNumberCount>) {
-        rvSavedRecords.visibility = View.VISIBLE
-        personAdapter?.setData(data)
+        recyclerView.visibility = View.VISIBLE
+        adapter?.setData(data)
     }
 
     private fun handleZeroCase() {
-        rvSavedRecords.visibility = View.GONE
+        recyclerView.visibility = View.GONE
         Toast.makeText(this,"No Records Found",Toast.LENGTH_LONG).show()
-    }
-
-    private fun setListeners() {
-        saveBtn.setOnClickListener {
-            saveData()
-        }
-
-        retrieveBtn.setOnClickListener {
-            viewModel?.getData()
-        }
-    }
-
-    private fun saveData() {
-        var name = edtName.text.trim().toString()
-        var age = edtAge.text.trim().toString()
-        edtName.setText("")
-        edtAge.setText("")
-        if (name.isNullOrBlank() || age.isNullOrBlank()) {
-            Toast.makeText(this, "Please enter valid details", Toast.LENGTH_LONG).show()
-        } else {
-
-            var lotteryNumberCount =
-                LotteryNumberCount(
-                    id = UUID.randomUUID(),
-                    lotteryGameType = "6of49",
-                    numberCounterMap = MapFactory.newCounterMap(
-                        ListFactory.newRangeList(
-                            1,
-                            49
-                        )
-                    )
-                )
-            viewModel?.saveDataIntoDb(lotteryNumberCount)
-
-        }
     }
 
 }

@@ -4,9 +4,11 @@ buildscript {
     ext.kotlinVersion = "1.3.61"
     ext.lotteryVersion = "5.9"
     ext.randomizerVersion = "6.7"
-    ext.sillyCollectionsVersion = "8"
+    ext.sillyCollectionsVersion = "8.1"
     ext.sillyStringsVersion = "5.5"
     ext.sillyMathVersion = "1.1"
+    ext.gsonVersion = "2.8.6"
+    // room versions
     ext.roomVersion="2.2.3"
     ext.archLifecycleVersion="2.2.0-rc02"
     ext.androidxArchVersion = "2.1.0"
@@ -14,6 +16,7 @@ buildscript {
     ext.coroutines = "1.3.2"
     ext.materialVersion = "1.0.0"
     repositories {
+        mavenLocal()
         google()
         jcenter()
         

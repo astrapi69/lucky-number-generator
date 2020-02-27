@@ -5,8 +5,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
+import de.alpharogroup.collections.list.ListFactory
+import de.alpharogroup.collections.map.MapExtensions
+import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.random.number.RandomPrimitivesExtensions
+import java.util.*
 
 class EurojackpotGenerationActivity : AppCompatActivity() {
 
@@ -17,6 +24,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
     lateinit var txtFifthNumber1Of50: EditText
     lateinit var txtFirstEuroNumber1Of10: EditText
     lateinit var txtSecondEuroNumber1Of10: EditText
+    private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
@@ -30,6 +38,8 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eurojackpot_generation)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        viewModel = ViewModelProvider(this).get(LotteryNumberCountViewModel::class.java)
         onInitialize()
         disableEditTexts()
     }
@@ -82,6 +92,17 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         txtThirdNumber1Of50.setText(toIntArray[2].toString())
         txtFourthNumber1Of50.setText(toIntArray[3].toString())
         txtFifthNumber1Of50.setText(toIntArray[4].toString())
+        var numberCounterMap = MapFactory.newCounterMap(
+            ListFactory.newRangeList(
+                1,
+                49
+            )
+        )
+        val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, eurojackpotNumbers)
+        var lotteryNumberCount = LotteryNumberCount(
+            id = UUID.randomUUID(), lotteryGameType = "6of49",
+            numberCounterMap = mergeAndSummarize)
+        viewModel?.insert(lotteryNumberCount)
     }
 
     private fun onSetEuroNumbers() {

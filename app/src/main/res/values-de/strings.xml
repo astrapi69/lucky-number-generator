@@ -33,4 +33,8 @@
     <string name="custom_generated_lucky_numbers">Deine individuellen Glückszahlen</string>
     <string name="lottery_number_count_label">Gespeicherte Zahlen</string>
     <string name="title_activity_lottery_number_count_list">Lotto Zahlen Zählerliste</string>
+
+    <string name="hint_word">Word...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>

@@ -33,4 +33,7 @@
     <string name="lottery_number_count_label" >Saved numbers</string>
     <string name="title_activity_lottery_number_count_list">Lottery Number Count List</string>
 
+    <string name="hint_word">Word...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>

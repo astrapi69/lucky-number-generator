@@ -8,9 +8,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
+import de.alpharogroup.collections.map.MapExtensions
+import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.math.MathExtensions
 import de.alpharogroup.string.StringExtensions
+import java.util.*
 
 class CustomGenerationActivity : AppCompatActivity() {
 
@@ -24,6 +30,7 @@ class CustomGenerationActivity : AppCompatActivity() {
     lateinit var txtMinVolume: EditText
     lateinit var txtMaxVolume: EditText
     lateinit var txtIterations: EditText
+    private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
@@ -57,6 +64,8 @@ class CustomGenerationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_generation)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        viewModel = ViewModelProvider(this).get(LotteryNumberCountViewModel::class.java)
         onInitialize()
 
     }
@@ -142,6 +151,11 @@ class CustomGenerationActivity : AppCompatActivity() {
                 maxVolume,
                 drawCount
             )
+        val mergeAndSummarize = MapExtensions.mergeAndSummarize(MapFactory.newCounterMap(drawFromMultiMap), drawFromMultiMap)
+        var lotteryNumberCount = LotteryNumberCount(
+            id = UUID.randomUUID(), lotteryGameType = "custom",
+            numberCounterMap = mergeAndSummarize)
+        viewModel?.insert(lotteryNumberCount)
         val drawFromMultiMapString = drawFromMultiMap.toString()
         val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
             putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())

@@ -1,26 +1,29 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
-import android.content.Context
-import androidx.room.*
-import de.alpharogroup.collections.list.ListFactory
-import de.alpharogroup.collections.map.MapFactory
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.Completable
 import io.reactivex.Single
-import java.util.*
 
-@Dao
-interface LotteryNumberCountRepository {
+class LotteryNumberCountRepository(private val dao: LotteryNumberCountDao) {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(data: LotteryNumberCount) : Completable
+    fun insert(data: LotteryNumberCount): Completable {
+        return dao.insert(data)
+    }
 
-    @Query("select * from ${LotteryNumberCount.TABLE_NAME}")
-    fun findAll():Single<List<LotteryNumberCount>>
+    fun findAll(): LiveData<List<LotteryNumberCount>> {
+        return dao.findAll()
+    }
 
-    @Delete
-    fun delete(data: LotteryNumberCount):Completable
+    fun delete(data: LotteryNumberCount):Completable {
+        return dao.delete(data)
+    }
 
-    @Update
-    fun update(data: LotteryNumberCount)
+    fun update(data: LotteryNumberCount) {
+        dao.update(data)
+    }
 
+    suspend fun deleteAll(){
+        dao.deleteAll()
+    }
 }

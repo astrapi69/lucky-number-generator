@@ -3,30 +3,47 @@ package de.alpharogroup.android.lucky_number_generator.data
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(application) {
 
-    // The ViewModel maintains a reference to the repository to get data.
     private val repository: LotteryNumberCountRepository
 
-    protected val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
-    private val dataBaseInstance: LotteryNumberCountDatabase
-
-    var lotteryNumberCountList = MutableLiveData<List<LotteryNumberCount>>()
+    private val dao: LotteryNumberCountDao =
+        LotteryNumberCountDatabase.getDatabase(application).lotteryNumberCountDao()
+    var lotteryNumberCountList:LiveData<List<LotteryNumberCount>>
 
     init {
-        dataBaseInstance = LotteryNumberCountDatabase.getDatabase(application)
-        repository = LotteryNumberCountDatabase.getDatabase(application).lotteryNumberCountRepository()
+        repository = LotteryNumberCountRepository(dao)
+        lotteryNumberCountList = repository.findAll()
     }
 
-    fun saveDataIntoDb(lotteryNumberCount: LotteryNumberCount){
+    fun insert(data: LotteryNumberCount) = viewModelScope.launch {
+        repository.insert(data)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe ({
+                //Refresh Page data
+                getData()
+            },{
 
-        dataBaseInstance?.lotteryNumberCountRepository()?.insert(lotteryNumberCount)
+            })?.let {
+                compositeDisposable.add(it)
+            }
+    }
+
+    suspend fun saveDataIntoDb(lotteryNumberCount: LotteryNumberCount){
+
+        repository.insert(lotteryNumberCount)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe ({
@@ -38,23 +55,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getData(){
-
-        dataBaseInstance?.lotteryNumberCountRepository()?.findAll()
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe ({
-                if(!it.isNullOrEmpty()){
-                    lotteryNumberCountList.postValue(it)
-                }else{
-                    lotteryNumberCountList.postValue(listOf())
-                }
-                it?.forEach {
-                    Log.v("uuid value", it.id.toString())
-                }
-            },{
-            })?.let {
-                compositeDisposable.add(it)
-            }
+        lotteryNumberCountList = repository.findAll()
     }
 
     override fun onCleared() {
@@ -64,7 +65,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun delete(lotteryNumberCount: LotteryNumberCount) {
-        dataBaseInstance?.lotteryNumberCountRepository()?.delete(lotteryNumberCount)
+        repository.delete(lotteryNumberCount)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe ({

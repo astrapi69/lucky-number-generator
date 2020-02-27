@@ -11,7 +11,7 @@ android {
     viewBinding.enabled = true
     defaultConfig {
         applicationId "de.alpharogroup.android.lucky_number_generator"
-        minSdkVersion 26
+        minSdkVersion 28
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -76,6 +76,7 @@ dependencies {
     implementation "de.alpharogroup:silly-collections:$sillyCollectionsVersion"
     implementation "de.alpharogroup:silly-strings:$sillyStringsVersion"
     implementation "de.alpharogroup:silly-math:$sillyMathVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "org.apache.commons:commons-lang3:3.9"
     implementation "org.apache.commons:commons-collections4:4.4"
     testImplementation "junit:junit:4.13"
