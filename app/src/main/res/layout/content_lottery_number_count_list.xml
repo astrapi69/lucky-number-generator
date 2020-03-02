@@ -8,13 +8,51 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="345dp"
+        android:layout_height="508dp"
+        android:layout_marginStart="@dimen/left_margin_size"
         android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeselectAll"
+        app:layout_constraintVertical_bias="0.274"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <Button
+        android:id="@+id/btnMergeThem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:onClick="onMergeSelected"
+        android:text="@string/button_merge_selected_numbers"
+        android:enabled="false"
+        app:layout_constraintStart_toEndOf="@+id/btnDeselectAll"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSelectAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:onClick="onSelectAll"
+        android:text="@string/button_select_all"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDeselectAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_small_margin_size"
+        android:layout_marginTop="@dimen/top_margin_size"
+        android:onClick="onDeselectAll"
+        android:text="@string/button_deselect_all"
+        android:enabled="false"
+        app:layout_constraintStart_toEndOf="@+id/btnSelectAll"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

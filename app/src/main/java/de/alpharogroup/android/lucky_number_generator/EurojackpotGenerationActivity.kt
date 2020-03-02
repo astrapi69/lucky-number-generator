@@ -99,9 +99,10 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
             )
         )
         val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, eurojackpotNumbers)
+        val filteredMap = mergeAndSummarize.filterValues{it > 0}
         var lotteryNumberCount = LotteryNumberCount(
-            id = UUID.randomUUID(), lotteryGameType = "6of49",
-            numberCounterMap = mergeAndSummarize)
+            id = UUID.randomUUID(), lotteryGameType = "eurojackpot",
+            numberCounterMap = filteredMap.toMutableMap())
         viewModel?.insert(lotteryNumberCount)
     }
 

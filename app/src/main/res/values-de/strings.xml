@@ -35,6 +35,9 @@
     <string name="title_activity_lottery_number_count_list">Lotto Zahlen Zählerliste</string>
 
     <string name="hint_word">Word...</string>
-    <string name="button_save">Save</string>
+    <string name="button_save">Speichern</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="button_merge_selected_numbers">Zusammenführen</string>
+    <string name="button_select_all">Alle auswählen</string>
+    <string name="button_deselect_all">Alle abwählen</string>
 </resources>

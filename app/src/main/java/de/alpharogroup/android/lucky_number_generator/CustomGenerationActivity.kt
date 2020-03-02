@@ -17,6 +17,7 @@ import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.math.MathExtensions
 import de.alpharogroup.string.StringExtensions
 import java.util.*
+import kotlin.collections.LinkedHashMap
 
 class CustomGenerationActivity : AppCompatActivity() {
 
@@ -152,9 +153,10 @@ class CustomGenerationActivity : AppCompatActivity() {
                 drawCount
             )
         val mergeAndSummarize = MapExtensions.mergeAndSummarize(MapFactory.newCounterMap(drawFromMultiMap), drawFromMultiMap)
+        val toSortedMap = mergeAndSummarize.toSortedMap()
         var lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "custom",
-            numberCounterMap = mergeAndSummarize)
+            numberCounterMap = toSortedMap)
         viewModel?.insert(lotteryNumberCount)
         val drawFromMultiMapString = drawFromMultiMap.toString()
         val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {

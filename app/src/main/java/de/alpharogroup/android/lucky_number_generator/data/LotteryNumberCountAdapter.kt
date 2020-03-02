@@ -1,26 +1,27 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.CheckedTextView
 import androidx.recyclerview.widget.RecyclerView
-import de.alpharogroup.android.lucky_number_generator.R
+import de.alpharogroup.collections.map.MapExtensions
+import de.alpharogroup.collections.map.MapFactory
+import java.util.*
 
-import kotlinx.android.synthetic.main.content_lottery_number_count_list.view.*
+import de.alpharogroup.android.lucky_number_generator.R
 
 class LotteryNumberCountAdapter internal  constructor(
     context: Context
+//    , private val onDeleteClick: (LotteryNumberCount) -> Unit
 ) : RecyclerView.Adapter<LotteryNumberCountAdapter.DataViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var dataList = listOf<LotteryNumberCount>()
-
-    inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val lotteryNumberCountItemView: TextView = itemView.findViewById(R.id.textView)
-    }
+    var selected: MutableList<LotteryNumberCount> = mutableListOf<LotteryNumberCount>()
+    var itemStateArray = SparseBooleanArray()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
@@ -28,9 +29,38 @@ class LotteryNumberCountAdapter internal  constructor(
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val current = dataList[position]
-        val converter = IntegerIntegerMapConverter()
-        holder.lotteryNumberCountItemView.text = converter.fromIntegerMap(current.numberCounterMap)
+        holder.bind(position)
+
+    }
+
+    inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var lotteryNumberCountItemView: CheckedTextView = itemView.findViewById<View>(R.id.checkedTextView) as CheckedTextView
+
+        fun bind(position: Int) { // use the sparse boolean array to check
+            val current = dataList[position]
+            val converter = IntegerIntegerMapConverter()
+            val labelview = "Drawn numbers:\n"+ converter.fromIntegerMap(current.numberCounterMap) + "\nType:\n"+ current.lotteryGameType
+            lotteryNumberCountItemView.isChecked = itemStateArray[position, false]
+            lotteryNumberCountItemView.text = labelview
+        }
+
+        override fun onClick(v: View) {
+            val adapterPosition = adapterPosition
+            EventBus.post(ButtonEvent("foo"))
+            if (!itemStateArray[adapterPosition, false]) {
+                lotteryNumberCountItemView.isChecked = true
+                itemStateArray.put(adapterPosition, true)
+                selected.add(dataList[adapterPosition])
+            } else {
+                lotteryNumberCountItemView.isChecked = false
+                itemStateArray.put(adapterPosition, false)
+                selected.remove(dataList[adapterPosition])
+            }
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
     }
 
     internal fun setData(data: List<LotteryNumberCount>) {
@@ -42,4 +72,40 @@ class LotteryNumberCountAdapter internal  constructor(
         return dataList.size
     }
 
+    fun clearSelected() {
+        selected.clear()
+        for (i in 0 until itemStateArray.size()-1) {
+            val key = itemStateArray.keyAt(i)
+            itemStateArray.put(key, false)
+        }
+        EventBus.post(ButtonEvent("foo"))
+        notifyDataSetChanged()
+    }
+
+    fun selectAll() {
+        selected.clear()
+        selected.addAll(dataList)
+        for (i in 0 until dataList.size-1) {
+            itemStateArray.put(i, true)
+        }
+        EventBus.post(ButtonEvent("foo"))
+        notifyDataSetChanged()
+    }
+
+    fun mergeSelected(): LotteryNumberCount? {
+        var numberCounterMap: LotteryNumberCount? = null
+        if(!selected.isEmpty()){
+            var map: MutableMap<Int, Int> = MapFactory.newLinkedHashMap()
+            selected.forEach{
+                map = MapExtensions.mergeAndSummarize(map, it.numberCounterMap, true)
+            }
+            numberCounterMap = LotteryNumberCount(
+                id = UUID.randomUUID(), lotteryGameType = "merged", numberCounterMap = map)
+            val toMutableList = dataList.toMutableList()
+            toMutableList.add(numberCounterMap)
+            setData(toMutableList)
+            notifyDataSetChanged()
+        }
+        return numberCounterMap
+    }
 }

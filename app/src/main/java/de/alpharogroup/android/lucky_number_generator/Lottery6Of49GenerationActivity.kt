@@ -97,9 +97,10 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
             )
         )
         val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, lotteryNumbers)
+        val filteredMap = mergeAndSummarize.filterValues{it > 0}
         var lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "6of49",
-            numberCounterMap = mergeAndSummarize)
+            numberCounterMap = filteredMap.toMutableMap())
         viewModel?.insert(lotteryNumberCount)
 
     }

@@ -17,5 +17,7 @@ fun main(args: Array<String>) {
             49
         )
     ))
-    println(numberCounterMap)
+
+
 }
+

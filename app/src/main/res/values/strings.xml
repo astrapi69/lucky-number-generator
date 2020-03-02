@@ -36,4 +36,7 @@
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="button_merge_selected_numbers">Merge them</string>
+    <string name="button_select_all">Select all</string>
+    <string name="button_deselect_all">Deselect all</string>
 </resources>
