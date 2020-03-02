@@ -24,6 +24,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     lateinit var btnMergeThem: Button
     lateinit var btnDeselectAll: Button
     lateinit var btnSelectAll: Button
+    lateinit var btnDeleteSelected: Button
 
     lateinit var adapter: LotteryNumberCountAdapter
 
@@ -45,6 +46,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         btnMergeThem = findViewById<Button>(R.id.btnMergeThem)
         btnDeselectAll = findViewById<Button>(R.id.btnDeselectAll)
         btnSelectAll = findViewById(R.id.btnSelectAll)
+        btnDeleteSelected = findViewById(R.id.btnDeleteSelected)
         adapter = LotteryNumberCountAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -54,7 +56,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
         disposable =
             EventBus.subscribe<ButtonEvent>()
-                // if you want to receive the event on main thread
+                // receive the event on main thread
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     toggleMergeThemButton()
@@ -67,6 +69,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         if (adapter.selected.isEmpty()){
             btnMergeThem.setEnabled(false)
             btnDeselectAll.setEnabled(false)
+            btnDeleteSelected.setEnabled(false)
         }
         else{
             if(2 <= adapter.selected.size ){
@@ -75,6 +78,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
                 btnMergeThem.setEnabled(false)
             }
             btnDeselectAll.setEnabled(true)
+            btnDeleteSelected.setEnabled(true)
         }
     }
 
@@ -103,6 +107,15 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     fun onDeselectAll(view: View){
+        adapter?.clearSelected()
+    }
+
+    fun onDeleteSelected(view: View){
+        val deleteSelected = adapter?.deleteSelected()
+        deleteSelected?.forEach {
+            viewModel?.delete(it)
+        }
+        adapter?.selected.clear()
         adapter?.clearSelected()
     }
 

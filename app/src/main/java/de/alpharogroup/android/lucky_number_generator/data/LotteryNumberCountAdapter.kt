@@ -12,6 +12,7 @@ import de.alpharogroup.collections.map.MapFactory
 import java.util.*
 
 import de.alpharogroup.android.lucky_number_generator.R
+import de.alpharogroup.collections.list.ListFactory
 
 class LotteryNumberCountAdapter internal  constructor(
     context: Context
@@ -74,21 +75,21 @@ class LotteryNumberCountAdapter internal  constructor(
 
     fun clearSelected() {
         selected.clear()
-        for (i in 0 until itemStateArray.size()-1) {
+        for (i in 0 until itemStateArray.size()) {
             val key = itemStateArray.keyAt(i)
             itemStateArray.put(key, false)
         }
-        EventBus.post(ButtonEvent("foo"))
+        EventBus.post(ButtonEvent("clearSelected"))
         notifyDataSetChanged()
     }
 
     fun selectAll() {
         selected.clear()
         selected.addAll(dataList)
-        for (i in 0 until dataList.size-1) {
+        for (i in 0 until dataList.size) {
             itemStateArray.put(i, true)
         }
-        EventBus.post(ButtonEvent("foo"))
+        EventBus.post(ButtonEvent("selectAll"))
         notifyDataSetChanged()
     }
 
@@ -107,5 +108,16 @@ class LotteryNumberCountAdapter internal  constructor(
             notifyDataSetChanged()
         }
         return numberCounterMap
+    }
+
+    fun deleteSelected(): List<LotteryNumberCount>? {
+        var del : List<LotteryNumberCount>? = ListFactory.newArrayList()
+        if(!selected.isEmpty()){
+            val toMutableList = dataList.toMutableList()
+            toMutableList.removeAll(selected)
+            setData(toMutableList)
+            notifyDataSetChanged()
+        }
+        return selected
     }
 }

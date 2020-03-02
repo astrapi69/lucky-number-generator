@@ -8,16 +8,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="345dp"
-        android:layout_height="508dp"
-        android:layout_marginStart="@dimen/left_margin_size"
+        android:layout_width="357dp"
+        android:layout_height="486dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDeselectAll"
-        app:layout_constraintVertical_bias="0.274"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeleteSelected"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/recyclerview_item" />
 
     <Button
@@ -25,10 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_small_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
         android:onClick="onMergeSelected"
         android:text="@string/button_merge_selected_numbers"
-        android:enabled="false"
         app:layout_constraintStart_toEndOf="@+id/btnDeselectAll"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="16dp"
         android:onClick="onSelectAll"
         android:text="@string/button_select_all"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +48,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_small_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
         android:onClick="onDeselectAll"
         android:text="@string/button_deselect_all"
-        android:enabled="false"
         app:layout_constraintStart_toEndOf="@+id/btnSelectAll"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDeleteSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
+        android:onClick="onDeleteSelected"
+        android:text="@string/button_delete_selected"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeselectAll" />
+
+    <Button
+        android:id="@+id/btnShareSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
+        android:text="@string/button_share_selected"
+        app:layout_constraintStart_toEndOf="@+id/btnDeleteSelected"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeselectAll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

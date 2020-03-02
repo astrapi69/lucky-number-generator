@@ -40,4 +40,6 @@
     <string name="button_merge_selected_numbers">Zusammenführen</string>
     <string name="button_select_all">Alle auswählen</string>
     <string name="button_deselect_all">Alle abwählen</string>
+    <string name="button_delete_selected">Löschen</string>
+    <string name="button_share_selected">Teilen</string>
 </resources>
