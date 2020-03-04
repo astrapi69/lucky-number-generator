@@ -12,8 +12,7 @@ data class LotteryNumberCount(
     @ColumnInfo(name = LOTTERY_GAME_TYPE)
     var lotteryGameType: String = "",
     @TypeConverters(IntegerIntegerMapConverter::class)
-    var numberCounterMap: MutableMap<Int, Int> = MapFactory.newLinkedHashMap(),
-    var checked: Boolean = false
+    var numberCounterMap: MutableMap<Int, Int> = MapFactory.newLinkedHashMap()
 ) {
     companion object {
         const val TABLE_NAME = "lottery_numbers_statistics"

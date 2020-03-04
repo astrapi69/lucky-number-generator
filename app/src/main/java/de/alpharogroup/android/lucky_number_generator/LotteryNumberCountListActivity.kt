@@ -1,5 +1,6 @@
 package de.alpharogroup.android.lucky_number_generator
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,10 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import de.alpharogroup.android.lucky_number_generator.data.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+
 
 class LotteryNumberCountListActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     lateinit var btnDeselectAll: Button
     lateinit var btnSelectAll: Button
     lateinit var btnDeleteSelected: Button
+    lateinit var btnShareSelected: Button
 
     lateinit var adapter: LotteryNumberCountAdapter
 
@@ -47,6 +49,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         btnDeselectAll = findViewById<Button>(R.id.btnDeselectAll)
         btnSelectAll = findViewById(R.id.btnSelectAll)
         btnDeleteSelected = findViewById(R.id.btnDeleteSelected)
+        btnShareSelected = findViewById(R.id.btnShareSelected)
         adapter = LotteryNumberCountAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -54,15 +57,19 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         // Get a new or existing ViewModel from the ViewModelProvider.
         viewModel = ViewModelProvider(this).get(LotteryNumberCountViewModel::class.java)
 
+        observeButtonStates()
+
+        observeViewModel()
+    }
+
+    private fun observeButtonStates() {
         disposable =
             EventBus.subscribe<ButtonEvent>()
                 // receive the event on main thread
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribe {
                     toggleMergeThemButton()
-                })
-
-        observerViewModel()
+                }
     }
 
     private fun toggleMergeThemButton() {
@@ -70,6 +77,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
             btnMergeThem.setEnabled(false)
             btnDeselectAll.setEnabled(false)
             btnDeleteSelected.setEnabled(false)
+            btnShareSelected.setEnabled(false)
         }
         else{
             if(2 <= adapter.selected.size ){
@@ -79,10 +87,11 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
             }
             btnDeselectAll.setEnabled(true)
             btnDeleteSelected.setEnabled(true)
+            btnShareSelected.setEnabled(true)
         }
     }
 
-    private fun observerViewModel() {
+    private fun observeViewModel() {
         viewModel?.lotteryNumberCountList?.observe(this, Observer {
             if (!it.isNullOrEmpty()) {
                 handleData(it)
@@ -110,6 +119,18 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         adapter?.clearSelected()
     }
 
+    fun onShareSelected(view: View){
+        adapter?.selected
+        val listLotteryNumberCountConverter = ListLotteryNumberCountConverter()
+        val json = listLotteryNumberCountConverter.fromList(adapter?.selected)
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Lucky lottery numbers collection")
+        shareIntent.putExtra(Intent.EXTRA_TEXT, json)
+        shareIntent.type = "application/json"
+        startActivity(shareIntent)
+    }
+
     fun onDeleteSelected(view: View){
         val deleteSelected = adapter?.deleteSelected()
         deleteSelected?.forEach {
@@ -124,6 +145,11 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         mergeSelected?.let {
             viewModel?.insert(it)
         }
+    }
+
+    fun onImport(view: View){
+        val intent = Intent(this, ImportLotteryNumberCountListActivity::class.java)
+        startActivity(intent)
     }
 
 }

@@ -74,8 +74,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:enabled="false"
+        android:onClick="onShareSelected"
         android:text="@string/button_share_selected"
         app:layout_constraintStart_toEndOf="@+id/btnDeleteSelected"
         app:layout_constraintTop_toBottomOf="@+id/btnDeselectAll" />
+
+    <Button
+        android:id="@+id/btnImport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onImport"
+        android:text="@string/button_import"
+        app:layout_constraintStart_toEndOf="@+id/btnShareSelected"
+        app:layout_constraintTop_toBottomOf="@+id/btnMergeThem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

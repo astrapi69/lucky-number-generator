@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ImportLotteryNumberCountListActivity"></activity>
         <activity android:name=".LotteryNumberCountListActivity" />
         <activity android:name=".CustomGenerationResultActivity" />
         <activity android:name=".CustomGenerationActivity" />

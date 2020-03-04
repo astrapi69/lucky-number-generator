@@ -42,4 +42,7 @@
     <string name="button_deselect_all">Alle abwählen</string>
     <string name="button_delete_selected">Löschen</string>
     <string name="button_share_selected">Teilen</string>
+    <string name="button_import">Importieren</string>
+    <string name="button_import_json">JSON Importieren</string>
+    <string name="paste_json_data_here">JSON Daten hier einfügen</string>
 </resources>
