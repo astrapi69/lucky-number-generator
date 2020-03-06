@@ -1,4 +1,4 @@
-package de.alpharogroup.android.lucky_number_generator.data
+package de.alpharogroup.android.lucky_number_generator.data.converter
 
 import androidx.room.TypeConverter
 import java.util.*

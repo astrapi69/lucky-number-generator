@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:onClick="onImportJson"
         android:text="@string/button_import_json"
-        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,17 +22,18 @@
         android:layout_width="347dp"
         android:layout_height="486dp"
         android:layout_marginTop="24dp"
-        android:autofillHints=""
+        android:defaultFocusHighlightEnabled="true"
         android:ems="10"
-        android:gravity="start|top"
         android:hint="@string/paste_json_data_here"
         android:inputType="textMultiLine"
-        android:onClick="onImportJson"
         android:scrollbars="vertical"
         android:scrollHorizontally="false"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnImportJson"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.795"
+        android:autofillHints="" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 package de.alpharogroup.android.lucky_number_generator
 
-import de.alpharogroup.android.lucky_number_generator.data.ListLotteryNumberCountConverter
+import de.alpharogroup.android.lucky_number_generator.data.converter.ListLotteryNumberCountConverter
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapFactory
@@ -20,7 +20,8 @@ class ExampleUnitTest {
     }
     @Test
     fun listLotteryNumberCountConverterTest() {
-        val listLotteryNumberCountConverter = ListLotteryNumberCountConverter()
+        val listLotteryNumberCountConverter =
+            ListLotteryNumberCountConverter()
         val numberCounterMap = LotteryNumberCount(
             id = UUID.fromString("edc6ea10-26d8-44d0-95ea-e519821be9d5"), lotteryGameType = "6of49", numberCounterMap = MapFactory.newCounterMap(
                 ListFactory.newRangeList(

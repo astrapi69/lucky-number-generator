@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.alpharogroup.android.lucky_number_generator.data.*
+import de.alpharogroup.android.lucky_number_generator.data.converter.ListLotteryNumberCountConverter
+import de.alpharogroup.android.lucky_number_generator.event.ButtonEvent
+import de.alpharogroup.android.lucky_number_generator.event.EventBus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
@@ -121,7 +124,8 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
     fun onShareSelected(view: View){
         adapter?.selected
-        val listLotteryNumberCountConverter = ListLotteryNumberCountConverter()
+        val listLotteryNumberCountConverter =
+            ListLotteryNumberCountConverter()
         val json = listLotteryNumberCountConverter.fromList(adapter?.selected)
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND

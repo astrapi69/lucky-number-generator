@@ -12,6 +12,9 @@ import de.alpharogroup.collections.map.MapFactory
 import java.util.*
 
 import de.alpharogroup.android.lucky_number_generator.R
+import de.alpharogroup.android.lucky_number_generator.data.converter.IntegerIntegerMapConverter
+import de.alpharogroup.android.lucky_number_generator.event.ButtonEvent
+import de.alpharogroup.android.lucky_number_generator.event.EventBus
 import de.alpharogroup.collections.list.ListFactory
 
 class LotteryNumberCountAdapter internal  constructor(
@@ -39,7 +42,8 @@ class LotteryNumberCountAdapter internal  constructor(
 
         fun bind(position: Int) { // use the sparse boolean array to check
             val current = dataList[position]
-            val converter = IntegerIntegerMapConverter()
+            val converter =
+                IntegerIntegerMapConverter()
             val labelview = "Drawn numbers:\n"+ converter.fromIntegerMap(current.numberCounterMap) + "\nType:\n"+ current.lotteryGameType
             lotteryNumberCountItemView.isChecked = itemStateArray[position, false]
             lotteryNumberCountItemView.text = labelview
@@ -47,7 +51,11 @@ class LotteryNumberCountAdapter internal  constructor(
 
         override fun onClick(v: View) {
             val adapterPosition = adapterPosition
-            EventBus.post(ButtonEvent("foo"))
+            EventBus.post(
+                ButtonEvent(
+                    "foo"
+                )
+            )
             if (!itemStateArray[adapterPosition, false]) {
                 lotteryNumberCountItemView.isChecked = true
                 itemStateArray.put(adapterPosition, true)
@@ -79,7 +87,11 @@ class LotteryNumberCountAdapter internal  constructor(
             val key = itemStateArray.keyAt(i)
             itemStateArray.put(key, false)
         }
-        EventBus.post(ButtonEvent("clearSelected"))
+        EventBus.post(
+            ButtonEvent(
+                "clearSelected"
+            )
+        )
         notifyDataSetChanged()
     }
 
@@ -89,7 +101,11 @@ class LotteryNumberCountAdapter internal  constructor(
         for (i in 0 until dataList.size) {
             itemStateArray.put(i, true)
         }
-        EventBus.post(ButtonEvent("selectAll"))
+        EventBus.post(
+            ButtonEvent(
+                "selectAll"
+            )
+        )
         notifyDataSetChanged()
     }
 

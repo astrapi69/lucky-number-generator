@@ -2,10 +2,8 @@ package de.alpharogroup.android.lucky_number_generator.data
 
 import android.content.Context
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import java.util.*
+import de.alpharogroup.android.lucky_number_generator.data.converter.IntegerIntegerMapConverter
+import de.alpharogroup.android.lucky_number_generator.data.converter.UUIDConverter
 
 @Database(entities = arrayOf(LotteryNumberCount::class), version = 1, exportSchema = false)
 @TypeConverters(IntegerIntegerMapConverter::class, UUIDConverter::class)
