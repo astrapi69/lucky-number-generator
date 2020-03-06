@@ -68,11 +68,11 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
                 // receive the event on main thread
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    toggleMergeThemButton()
+                    toggleButtons()
                 }
     }
 
-    private fun toggleMergeThemButton() {
+    private fun toggleButtons() {
         if (adapter.selected.isEmpty()){
             btnMergeThem.setEnabled(false)
             btnDeselectAll.setEnabled(false)
