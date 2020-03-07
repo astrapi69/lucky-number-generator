@@ -17,7 +17,6 @@ import java.util.*
 
 class LotteryNumberCountAdapter internal constructor(
     context: Context
-//    , private val onDeleteClick: (LotteryNumberCount) -> Unit
 ) : RecyclerView.Adapter<LotteryNumberCountAdapter.DataViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
