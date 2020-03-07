@@ -26,11 +26,10 @@ class CustomGenerationActivity : AppCompatActivity() {
         const val LUCKY_NUMBERS = "de.alpharogroup.android.lucky_number_generator.LUCKY_NUMBERS"
     }
 
-    val algos = arrayOf("Default", "Map", "Set")
-    lateinit var txtNumbersToDraw: EditText
-    lateinit var txtMinVolume: EditText
-    lateinit var txtMaxVolume: EditText
-    lateinit var txtIterations: EditText
+    private lateinit var txtNumbersToDraw: EditText
+    private lateinit var txtMinVolume: EditText
+    private lateinit var txtMaxVolume: EditText
+    private lateinit var txtIterations: EditText
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -41,7 +40,7 @@ class CustomGenerationActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 afterTextChanged.invoke(s.toString())
@@ -53,7 +52,7 @@ class CustomGenerationActivity : AppCompatActivity() {
         })
     }
 
-    fun EditText.validate(message: String, validator: (String) -> Boolean): Boolean {
+    private fun EditText.validate(message: String, validator: (String) -> Boolean): Boolean {
         this.afterTextChanged {
             this.error = if (validator(it)) null else message
         }
@@ -71,17 +70,17 @@ class CustomGenerationActivity : AppCompatActivity() {
 
     }
 
-    fun onInitialize() {
-        txtNumbersToDraw = findViewById<EditText>(R.id.txt_numbers_to_draw)
-        txtMinVolume = findViewById<EditText>(R.id.txt_min_volume)
-        txtMaxVolume = findViewById<EditText>(R.id.txt_max_volume)
-        txtIterations = findViewById<EditText>(R.id.txt_iterations)
+    private fun onInitialize() {
+        txtNumbersToDraw = findViewById(R.id.txt_numbers_to_draw)
+        txtMinVolume = findViewById(R.id.txt_min_volume)
+        txtMaxVolume = findViewById(R.id.txt_max_volume)
+        txtIterations = findViewById(R.id.txt_iterations)
     }
 
-    fun String.isNumber(): Boolean = StringExtensions.isNumber(this)
-    fun String.isNumberBetween(min: Int, max: Int): Boolean =
+    private fun String.isNumber(): Boolean = StringExtensions.isNumber(this)
+    private fun String.isNumberBetween(min: Int, max: Int): Boolean =
         this.isNumber() && MathExtensions.isBetween(min, max, this.toInt(), true, true)
-    fun String.isNumberAndGreaterAs(number: Int): Boolean =
+    private fun String.isNumberAndGreaterAs(number: Int): Boolean =
         this.isNumber() && number< this.toInt()
 
     fun onGenerateCustomNumbers(view: View) {
@@ -134,7 +133,7 @@ class CustomGenerationActivity : AppCompatActivity() {
         onDraw()
     }
 
-    fun onDraw() {
+    private fun onDraw() {
 
         val numbersToDraw = txtNumbersToDraw.text.toString()
         val minVolumeString = txtMinVolume.text.toString()

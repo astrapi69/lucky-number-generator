@@ -89,7 +89,7 @@ class ImportLotteryNumberCountListActivity : AppCompatActivity() {
         }
     }
 
-    fun validateJsonString(jsonString: String): Boolean{
+    private fun validateJsonString(jsonString: String): Boolean{
         return try {
             JsonParser.parseString(jsonString)
             true

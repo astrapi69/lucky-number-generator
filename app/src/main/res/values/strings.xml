@@ -7,13 +7,21 @@
     <string name="supernumber">Super number</string>
     <string name="generate_my_lucky_numbers">Lucky Numbers Go</string>
     <string name="super_six_number">Super Six Number</string>
-    <string name="hint_text_1_of_50_one">one</string>
-    <string name="hint_text_1_of_50_two">two</string>
-    <string name="hint_text_1_of_50_three">three</string>
-    <string name="hint_text_1_of_50_four">four</string>
-    <string name="hint_text_1_of_50_five">five</string>
-    <string name="hint_text_1_of_10_one">one</string>
-    <string name="hint_text_1_of_10_two">two</string>
+    <string name="hint_text_1_of_50_one">First number</string>
+    <string name="hint_text_1_of_50_two">Second number</string>
+    <string name="hint_text_1_of_50_three">Third number</string>
+    <string name="hint_text_1_of_50_four">Fourth number</string>
+    <string name="hint_text_1_of_50_five">Fifth number</string>
+    <string name="hint_text_1_of_10_one">First star number</string>
+    <string name="hint_text_1_of_10_two">Second star number</string>
+    <string name="hint_text_1_of_49_one">First number</string>
+    <string name="hint_text_1_of_49_two">Second number</string>
+    <string name="hint_text_1_of_49_three">Third number</string>
+    <string name="hint_text_1_of_49_four">Fourth number</string>
+    <string name="hint_text_1_of_49_five">Fifth number</string>
+    <string name="hint_text_1_of_49_six">Sixth number</string>
+    <string name="hint_text_super_number">Super number</string>
+    <string name="hint_text_super_six_number">Super6</string>
     <string name="euro_numbers">Euro numbers</string>
     <string name="numbers_to_draw">Numbers to draw</string>
     <string name="min_volume">Minimum number</string>
@@ -44,4 +52,8 @@
     <string name="button_import_json">Import json data</string>
     <string name="button_import">Import</string>
     <string name="paste_json_data_here">Paste json data here</string>
+    <string name="default_iteration_number">100</string>
+    <string name="default_min_volume_number">1</string>
+    <string name="default_max_volume_number">50</string>
+    <string name="default_numbers_to_draw">5</string>
 </resources>

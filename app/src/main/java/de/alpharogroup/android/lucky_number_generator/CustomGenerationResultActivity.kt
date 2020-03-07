@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class CustomGenerationResultActivity : AppCompatActivity() {
 
-    lateinit var luckyNumbers: String
-    lateinit var txtCustomGenerated: EditText
+    private lateinit var luckyNumbers: String
+    private lateinit var txtCustomGenerated: EditText
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
@@ -25,9 +25,9 @@ class CustomGenerationResultActivity : AppCompatActivity() {
         onInitialize()
     }
 
-    fun onInitialize() {
+    private fun onInitialize() {
         luckyNumbers = intent.getStringExtra(CustomGenerationActivity.LUCKY_NUMBERS)
-        txtCustomGenerated = findViewById<EditText>(R.id.txt_custom_generated)
+        txtCustomGenerated = findViewById(R.id.txt_custom_generated)
         txtCustomGenerated.setText(luckyNumbers)
     }
 

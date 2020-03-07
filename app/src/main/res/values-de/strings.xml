@@ -8,13 +8,21 @@
     <string name="supernumber">Super Zahl</string>
     <string name="generate_my_lucky_numbers">Generiere meine Glückszahlen</string>
     <string name="super_six_number">Super Sechs Zahl</string>
-    <string name="hint_text_1_of_50_one">Erste Zahl fürs Euro Jackpot</string>
-    <string name="hint_text_1_of_50_two">Zweite Zahl fürs Euro Jackpot</string>
-    <string name="hint_text_1_of_50_three">Dritte Zahl fürs Euro Jackpot</string>
-    <string name="hint_text_1_of_50_four">Vierte Zahl fürs Euro Jackpot</string>
-    <string name="hint_text_1_of_50_five">Fünfte Zahl fürs Euro Jackpot</string>
+    <string name="hint_text_1_of_50_one">Erste Euro Jackpot Zahl</string>
+    <string name="hint_text_1_of_50_two">Zweite Euro Jackpot Zahl</string>
+    <string name="hint_text_1_of_50_three">Dritte Euro Jackpot Zahl</string>
+    <string name="hint_text_1_of_50_four">Vierte Euro Jackpot Zahl</string>
+    <string name="hint_text_1_of_50_five">Fünfte Euro Jackpot Zahl</string>
     <string name="hint_text_1_of_10_one">Erste Sternzahl</string>
     <string name="hint_text_1_of_10_two">Zweite Sternzahl</string>
+    <string name="hint_text_1_of_49_one">Erste Zahl</string>
+    <string name="hint_text_1_of_49_two">Zweite Zahl</string>
+    <string name="hint_text_1_of_49_three">Dritte Zahl</string>
+    <string name="hint_text_1_of_49_four">Vierte Zahl</string>
+    <string name="hint_text_1_of_49_five">Fünfte Zahl</string>
+    <string name="hint_text_1_of_49_six">Sechste Zahl</string>
+    <string name="hint_text_super_number">Superzahl</string>
+    <string name="hint_text_super_six_number">Super6</string>
     <string name="euro_numbers">Eurozahlen</string>
     <string name="numbers_to_draw">Anzahl der Zahlen</string>
     <string name="min_volume">Kleinste Zahl</string>
@@ -45,4 +53,8 @@
     <string name="button_import">Importieren</string>
     <string name="button_import_json">JSON Importieren</string>
     <string name="paste_json_data_here">JSON Daten hier einfügen</string>
+    <string name="default_iteration_number">100</string>
+    <string name="default_min_volume_number">1</string>
+    <string name="default_max_volume_number">50</string>
+    <string name="default_numbers_to_draw">5</string>
 </resources>

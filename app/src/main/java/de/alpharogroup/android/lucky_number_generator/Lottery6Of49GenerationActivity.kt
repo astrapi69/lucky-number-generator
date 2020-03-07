@@ -1,5 +1,9 @@
 package de.alpharogroup.android.lucky_number_generator
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.BitmapShader
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -7,8 +11,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
-import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountDao
-import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountDatabase
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapExtensions
@@ -17,16 +19,17 @@ import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.random.number.RandomPrimitivesExtensions
 import java.util.*
 
+
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
 
-    lateinit var txtFirstNumber1Of49: EditText
-    lateinit var txtSecondNumber1Of49: EditText
-    lateinit var txtThirdNumber1Of49: EditText
-    lateinit var txtFourthNumber1Of49: EditText
-    lateinit var txtFifthNumber1Of49: EditText
-    lateinit var txtSixthNumber1Of49: EditText
-    lateinit var txtSuperNumber1Of49: EditText
-    lateinit var txtSuperSixNumber1Of49: EditText
+    private lateinit var txtFirstNumber1Of49: EditText
+    private lateinit var txtSecondNumber1Of49: EditText
+    private lateinit var txtThirdNumber1Of49: EditText
+    private lateinit var txtFourthNumber1Of49: EditText
+    private lateinit var txtFifthNumber1Of49: EditText
+    private lateinit var txtSixthNumber1Of49: EditText
+    private lateinit var txtSuperNumber1Of49: EditText
+    private lateinit var txtSuperSixNumber1Of49: EditText
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,34 +50,33 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         disableEditTexts()
     }
 
-    fun onInitialize() {
-        txtFirstNumber1Of49 = findViewById<EditText>(R.id.firstNumber1Of49)
-        txtSecondNumber1Of49 = findViewById<EditText>(R.id.secondNumber1Of49)
-        txtThirdNumber1Of49 = findViewById<EditText>(R.id.thirdNumber1Of49)
-        txtFourthNumber1Of49 = findViewById<EditText>(R.id.fourthNumber1Of49)
-        txtFifthNumber1Of49 = findViewById<EditText>(R.id.fifthNumber1Of49)
-        txtSixthNumber1Of49 = findViewById<EditText>(R.id.sixthNumber1Of49)
-        txtSuperNumber1Of49 = findViewById<EditText>(R.id.superNumber1Of49)
-        txtSuperSixNumber1Of49 = findViewById<EditText>(R.id.superSixNumber1Of49)
+    private fun onInitialize() {
+        txtFirstNumber1Of49 = findViewById(R.id.firstNumber1Of49)
+        txtSecondNumber1Of49 = findViewById(R.id.secondNumber1Of49)
+        txtThirdNumber1Of49 = findViewById(R.id.thirdNumber1Of49)
+        txtFourthNumber1Of49 = findViewById(R.id.fourthNumber1Of49)
+        txtFifthNumber1Of49 = findViewById(R.id.fifthNumber1Of49)
+        txtSixthNumber1Of49 = findViewById(R.id.sixthNumber1Of49)
+        txtSuperNumber1Of49 = findViewById(R.id.superNumber1Of49)
+        txtSuperSixNumber1Of49 = findViewById(R.id.superSixNumber1Of49)
     }
 
-
     private fun disableEditTexts() {
-        txtFirstNumber1Of49.setEnabled(false)
-        txtSecondNumber1Of49.setEnabled(false)
-        txtThirdNumber1Of49.setEnabled(false)
-        txtFourthNumber1Of49.setEnabled(false)
-        txtFifthNumber1Of49.setEnabled(false)
-        txtSixthNumber1Of49.setEnabled(false)
-        txtSuperNumber1Of49.setEnabled(false)
-        txtSuperSixNumber1Of49.setEnabled(false)
+        txtFirstNumber1Of49.isEnabled = false
+        txtSecondNumber1Of49.isEnabled = false
+        txtThirdNumber1Of49.isEnabled = false
+        txtFourthNumber1Of49.isEnabled = false
+        txtFifthNumber1Of49.isEnabled = false
+        txtSixthNumber1Of49.isEnabled = false
+        txtSuperNumber1Of49.isEnabled = false
+        txtSuperSixNumber1Of49.isEnabled = false
     }
 
     fun onGenerate1Of49(view: View) {
         onDraw()
     }
 
-    fun onDraw() {
+    private fun onDraw() {
         val max = 6
         val volume = 49
         val lotteryNumbers = DrawnLotteryNumbersExtensions.draw(max, volume)

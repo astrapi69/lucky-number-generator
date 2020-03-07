@@ -44,7 +44,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         disableEditTexts()
     }
 
-    fun onInitialize() {
+    private fun onInitialize() {
         txtFirstNumber1Of50 = findViewById<EditText>(R.id.firstNumber1Of50)
         txtSecondNumber1Of50 = findViewById<EditText>(R.id.secondNumber1Of50)
         txtThirdNumber1Of50 = findViewById<EditText>(R.id.thirdNumber1Of50)
@@ -68,7 +68,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         onDraw()
     }
 
-    fun onDraw() {
+    private fun onDraw() {
         onSetEurojackpotNumbers()
         onSetEuroNumbers()
     }

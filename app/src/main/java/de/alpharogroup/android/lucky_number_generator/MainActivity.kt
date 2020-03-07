@@ -9,7 +9,6 @@ import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountVie
 
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

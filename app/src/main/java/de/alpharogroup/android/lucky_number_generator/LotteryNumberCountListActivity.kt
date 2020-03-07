@@ -23,15 +23,15 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
     private var viewModel: LotteryNumberCountViewModel? = null
 
-    lateinit var recyclerView:  RecyclerView
+    private lateinit var recyclerView:  RecyclerView
 
-    lateinit var btnMergeThem: Button
-    lateinit var btnDeselectAll: Button
-    lateinit var btnSelectAll: Button
-    lateinit var btnDeleteSelected: Button
-    lateinit var btnShareSelected: Button
+    private lateinit var btnMergeThem: Button
+    private lateinit var btnDeselectAll: Button
+    private lateinit var btnSelectAll: Button
+    private lateinit var btnDeleteSelected: Button
+    private lateinit var btnShareSelected: Button
 
-    lateinit var adapter: LotteryNumberCountAdapter
+    private lateinit var adapter: LotteryNumberCountAdapter
 
     private var disposable: Disposable? = null
 
