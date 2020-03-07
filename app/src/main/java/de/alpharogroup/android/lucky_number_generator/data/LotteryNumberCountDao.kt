@@ -16,6 +16,9 @@ interface LotteryNumberCountDao {
     @Delete
     fun delete(data: LotteryNumberCount): Completable
 
+    @Delete
+    fun delete(data: List<LotteryNumberCount>): Completable
+
     @Update
     fun update(data: LotteryNumberCount)
 

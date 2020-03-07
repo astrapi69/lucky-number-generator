@@ -17,6 +17,10 @@ class LotteryNumberCountRepository(private val dao: LotteryNumberCountDao) {
         return dao.delete(data)
     }
 
+    fun delete(data: List<LotteryNumberCount>): Completable {
+        return dao.delete(data)
+    }
+
     fun update(data: LotteryNumberCount) {
         dao.update(data)
     }

@@ -48,7 +48,25 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
         super.onCleared()
     }
 
+    fun reload() {
+        getData()
+    }
+
     fun delete(lotteryNumberCount: LotteryNumberCount) {
+        repository.delete(lotteryNumberCount)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                //Refresh Page data
+                getData()
+            }, {
+
+            }).let {
+                compositeDisposable.add(it)
+            }
+    }
+
+    fun delete(lotteryNumberCount: List<LotteryNumberCount>) {
         repository.delete(lotteryNumberCount)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

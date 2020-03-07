@@ -119,10 +119,6 @@ class LotteryNumberCountAdapter internal constructor(
             numberCounterMap = LotteryNumberCount(
                 id = UUID.randomUUID(), lotteryGameType = "merged", numberCounterMap = map
             )
-            val toMutableList = dataList.toMutableList()
-            toMutableList.add(numberCounterMap)
-            setData(toMutableList)
-            notifyDataSetChanged()
         }
         return numberCounterMap
     }

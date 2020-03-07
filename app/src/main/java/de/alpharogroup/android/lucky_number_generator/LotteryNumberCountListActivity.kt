@@ -149,6 +149,10 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         mergeSelected?.let {
             viewModel?.insert(it)
         }
+        viewModel?.delete(adapter.selected)
+        viewModel?.reload()
+        viewModel?.lotteryNumberCountList?.value?.let { adapter.setData(it) }
+        adapter.notifyDataSetChanged()
     }
 
     fun onImport(view: View) {
