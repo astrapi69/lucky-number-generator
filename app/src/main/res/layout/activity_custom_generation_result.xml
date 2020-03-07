@@ -27,6 +27,8 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="none"
+        android:hint="@string/hint_text_custom_generated"
+        android:autofillHints=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_custom_generated" />
 </androidx.constraintlayout.widget.ConstraintLayout>

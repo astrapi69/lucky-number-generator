@@ -31,6 +31,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_50_one"
+        android:autofillHints=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
 
@@ -46,6 +48,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_50_two"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/firstNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
 
@@ -61,6 +65,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_50_three"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/secondNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
 
@@ -76,6 +82,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_50_four"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/thirdNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
 
@@ -91,6 +99,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_10_one"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/lbl_euro_numbers"
         app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
 
@@ -106,6 +116,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_10_two"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/firstEuroNumber1Of10"
         app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
 
@@ -121,6 +133,8 @@
         android:gravity="center"
         android:background="#333"
         android:textColor="#fff"
+        android:hint="@string/hint_text_1_of_50_five"
+        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/fourthNumber1Of50"
         app:layout_constraintTop_toBottomOf="@+id/lbl_eurojackpot" />
 
