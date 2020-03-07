@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
 
 class MainActivity : AppCompatActivity() {
 

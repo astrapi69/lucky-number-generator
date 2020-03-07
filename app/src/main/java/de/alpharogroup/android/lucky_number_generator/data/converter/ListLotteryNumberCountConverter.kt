@@ -4,7 +4,6 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
-import java.util.*
 
 class ListLotteryNumberCountConverter {
     @TypeConverter

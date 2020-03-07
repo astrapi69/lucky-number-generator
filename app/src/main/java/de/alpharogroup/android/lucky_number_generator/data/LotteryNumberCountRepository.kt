@@ -1,9 +1,7 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import io.reactivex.Completable
-import io.reactivex.Single
 
 class LotteryNumberCountRepository(private val dao: LotteryNumberCountDao) {
 

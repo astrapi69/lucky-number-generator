@@ -1,12 +1,9 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -29,32 +26,19 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
 
     fun insert(data: LotteryNumberCount) = viewModelScope.launch {
         repository.insert(data)
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe ({
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
                 //Refresh Page data
                 getData()
             },{
 
-            })?.let {
+            }).let {
                 compositeDisposable.add(it)
             }
     }
 
-    suspend fun saveDataIntoDb(lotteryNumberCount: LotteryNumberCount){
-
-        repository.insert(lotteryNumberCount)
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe ({
-            },{
-
-            })?.let {
-                compositeDisposable.add(it)
-            }
-    }
-
-    fun getData(){
+    private fun getData(){
         lotteryNumberCountList = repository.findAll()
     }
 
@@ -66,14 +50,14 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
 
     fun delete(lotteryNumberCount: LotteryNumberCount) {
         repository.delete(lotteryNumberCount)
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe ({
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
                 //Refresh Page data
                 getData()
             },{
 
-            })?.let {
+            }).let {
                 compositeDisposable.add(it)
             }
     }

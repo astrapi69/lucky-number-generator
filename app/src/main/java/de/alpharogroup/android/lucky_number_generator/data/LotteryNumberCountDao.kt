@@ -1,10 +1,8 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import io.reactivex.Completable
-import io.reactivex.Single
 
 @Dao
 interface LotteryNumberCountDao {

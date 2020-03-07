@@ -7,15 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import androidx.recyclerview.widget.RecyclerView
-import de.alpharogroup.collections.map.MapExtensions
-import de.alpharogroup.collections.map.MapFactory
-import java.util.*
-
 import de.alpharogroup.android.lucky_number_generator.R
 import de.alpharogroup.android.lucky_number_generator.data.converter.IntegerIntegerMapConverter
 import de.alpharogroup.android.lucky_number_generator.event.ButtonEvent
 import de.alpharogroup.android.lucky_number_generator.event.EventBus
 import de.alpharogroup.collections.list.ListFactory
+import de.alpharogroup.collections.map.MapExtensions
+import de.alpharogroup.collections.map.MapFactory
+import java.util.*
 
 class LotteryNumberCountAdapter internal  constructor(
     context: Context
@@ -38,7 +37,7 @@ class LotteryNumberCountAdapter internal  constructor(
     }
 
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var lotteryNumberCountItemView: CheckedTextView = itemView.findViewById<View>(R.id.checkedTextView) as CheckedTextView
+        private var lotteryNumberCountItemView: CheckedTextView = itemView.findViewById<View>(R.id.checkedTextView) as CheckedTextView
 
         fun bind(position: Int) { // use the sparse boolean array to check
             val current = dataList[position]
@@ -53,7 +52,7 @@ class LotteryNumberCountAdapter internal  constructor(
             val adapterPosition = adapterPosition
             EventBus.post(
                 ButtonEvent(
-                    "foo"
+                    "item clicked"
                 )
             )
             if (!itemStateArray[adapterPosition, false]) {
@@ -127,7 +126,6 @@ class LotteryNumberCountAdapter internal  constructor(
     }
 
     fun deleteSelected(): List<LotteryNumberCount>? {
-        var del : List<LotteryNumberCount>? = ListFactory.newArrayList()
         if(!selected.isEmpty()){
             val toMutableList = dataList.toMutableList()
             toMutableList.removeAll(selected)

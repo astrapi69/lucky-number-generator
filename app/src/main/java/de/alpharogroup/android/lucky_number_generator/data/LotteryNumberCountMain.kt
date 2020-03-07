@@ -2,7 +2,6 @@ package de.alpharogroup.android.lucky_number_generator.data
 
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapFactory
-import de.alpharogroup.random.number.RandomPrimitivesExtensions
 import java.util.*
 
 const val DB_VERSION = 1
@@ -17,7 +16,6 @@ fun main(args: Array<String>) {
             49
         )
     ))
-
-
+    print(numberCounterMap)
 }
 

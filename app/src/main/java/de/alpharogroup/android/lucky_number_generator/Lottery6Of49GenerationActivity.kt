@@ -1,9 +1,5 @@
 package de.alpharogroup.android.lucky_number_generator
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.BitmapShader
-import android.graphics.Shader
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -18,7 +14,6 @@ import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
 import de.alpharogroup.random.number.RandomPrimitivesExtensions
 import java.util.*
-
 
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
 
@@ -92,7 +87,7 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         txtSixthNumber1Of49.setText(toIntArray[5].toString())
         txtSuperNumber1Of49.setText(superNumber.toString())
         txtSuperSixNumber1Of49.setText(superSixNumber.toString())
-        var numberCounterMap = MapFactory.newCounterMap(
+        val numberCounterMap = MapFactory.newCounterMap(
             ListFactory.newRangeList(
                 1,
                 49
@@ -100,7 +95,7 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         )
         val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, lotteryNumbers)
         val filteredMap = mergeAndSummarize.filterValues{it > 0}
-        var lotteryNumberCount = LotteryNumberCount(
+        val lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "6of49",
             numberCounterMap = filteredMap.toMutableMap())
         viewModel?.insert(lotteryNumberCount)

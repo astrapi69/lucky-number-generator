@@ -1,6 +1,9 @@
 package de.alpharogroup.android.lucky_number_generator.data
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import de.alpharogroup.android.lucky_number_generator.data.converter.IntegerIntegerMapConverter
 import de.alpharogroup.collections.map.MapFactory
 import java.util.*

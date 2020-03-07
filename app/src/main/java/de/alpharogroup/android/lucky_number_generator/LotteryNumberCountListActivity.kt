@@ -11,13 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import de.alpharogroup.android.lucky_number_generator.data.*
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountAdapter
+import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
 import de.alpharogroup.android.lucky_number_generator.data.converter.ListLotteryNumberCountConverter
 import de.alpharogroup.android.lucky_number_generator.event.ButtonEvent
 import de.alpharogroup.android.lucky_number_generator.event.EventBus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-
 
 class LotteryNumberCountListActivity : AppCompatActivity() {
 
@@ -106,7 +107,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
     private fun handleData(data: List<LotteryNumberCount>) {
         recyclerView.visibility = View.VISIBLE
-        adapter?.setData(data)
+        adapter.setData(data)
     }
 
     private fun handleZeroCase() {
@@ -115,18 +116,18 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     fun onSelectAll(view: View) {
-        adapter?.selectAll()
+        adapter.selectAll()
     }
 
     fun onDeselectAll(view: View){
-        adapter?.clearSelected()
+        adapter.clearSelected()
     }
 
     fun onShareSelected(view: View){
-        adapter?.selected
+        adapter.selected
         val listLotteryNumberCountConverter =
             ListLotteryNumberCountConverter()
-        val json = listLotteryNumberCountConverter.fromList(adapter?.selected)
+        val json = listLotteryNumberCountConverter.fromList(adapter.selected)
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Lucky lottery numbers collection")
@@ -136,16 +137,16 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     fun onDeleteSelected(view: View){
-        val deleteSelected = adapter?.deleteSelected()
+        val deleteSelected = adapter.deleteSelected()
         deleteSelected?.forEach {
             viewModel?.delete(it)
         }
-        adapter?.selected.clear()
-        adapter?.clearSelected()
+        adapter.selected.clear()
+        adapter.clearSelected()
     }
 
     fun onMergeSelected(view: View){
-        val mergeSelected = adapter?.mergeSelected()
+        val mergeSelected = adapter.mergeSelected()
         mergeSelected?.let {
             viewModel?.insert(it)
         }
