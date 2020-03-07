@@ -28,7 +28,7 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
@@ -94,10 +94,11 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
             )
         )
         val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, lotteryNumbers)
-        val filteredMap = mergeAndSummarize.filterValues{it > 0}
+        val filteredMap = mergeAndSummarize.filterValues { it > 0 }
         val lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "6of49",
-            numberCounterMap = filteredMap.toMutableMap())
+            numberCounterMap = filteredMap.toMutableMap()
+        )
         viewModel?.insert(lotteryNumberCount)
 
     }

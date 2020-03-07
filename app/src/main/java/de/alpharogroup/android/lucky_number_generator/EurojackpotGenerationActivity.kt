@@ -27,7 +27,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
@@ -98,11 +98,13 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
                 49
             )
         )
-        val mergeAndSummarize = MapExtensions.mergeAndSummarize(numberCounterMap, eurojackpotNumbers)
-        val filteredMap = mergeAndSummarize.filterValues{it > 0}
+        val mergeAndSummarize =
+            MapExtensions.mergeAndSummarize(numberCounterMap, eurojackpotNumbers)
+        val filteredMap = mergeAndSummarize.filterValues { it > 0 }
         var lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "eurojackpot",
-            numberCounterMap = filteredMap.toMutableMap())
+            numberCounterMap = filteredMap.toMutableMap()
+        )
         viewModel?.insert(lotteryNumberCount)
     }
 

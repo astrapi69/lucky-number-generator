@@ -28,7 +28,7 @@ class ImportLotteryNumberCountListActivity : AppCompatActivity() {
     private var disposable: Disposable? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
@@ -57,10 +57,10 @@ class ImportLotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     private fun toggleButtons() {
-        txtImportJson.addTextChangedListener ( object : TextWatcher {
+        txtImportJson.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 s?.length?.let {
-                    txtImportJson.isEnabled = 0<it
+                    txtImportJson.isEnabled = 0 < it
                 }
             }
 
@@ -73,10 +73,10 @@ class ImportLotteryNumberCountListActivity : AppCompatActivity() {
         })
     }
 
-    fun onImportJson(view: View){
+    fun onImportJson(view: View) {
         val jsonString = txtImportJson.text.toString()
         val fromString: List<LotteryNumberCount>
-        if (validateJsonString(jsonString)){
+        if (validateJsonString(jsonString)) {
             val listLotteryNumberCountConverter =
                 ListLotteryNumberCountConverter()
             fromString = listLotteryNumberCountConverter.fromString(jsonString)
@@ -84,15 +84,15 @@ class ImportLotteryNumberCountListActivity : AppCompatActivity() {
                 viewModel?.insert(it)
             }
         } else {
-            Toast.makeText(this,"Input is not a valid json string", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Input is not a valid json string", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun validateJsonString(jsonString: String): Boolean{
+    private fun validateJsonString(jsonString: String): Boolean {
         return try {
             JsonParser.parseString(jsonString)
             true
-        } catch (jse: JsonSyntaxException){
+        } catch (jse: JsonSyntaxException) {
             false
         }
     }

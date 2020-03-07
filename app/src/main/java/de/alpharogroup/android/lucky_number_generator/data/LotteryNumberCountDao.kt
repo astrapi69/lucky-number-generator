@@ -8,13 +8,13 @@ import io.reactivex.Completable
 interface LotteryNumberCountDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(data: LotteryNumberCount) : Completable
+    fun insert(data: LotteryNumberCount): Completable
 
     @Query("select * from ${LotteryNumberCount.TABLE_NAME}")
     fun findAll(): LiveData<List<LotteryNumberCount>>
 
     @Delete
-    fun delete(data: LotteryNumberCount):Completable
+    fun delete(data: LotteryNumberCount): Completable
 
     @Update
     fun update(data: LotteryNumberCount)

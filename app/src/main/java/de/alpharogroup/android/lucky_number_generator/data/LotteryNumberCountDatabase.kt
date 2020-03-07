@@ -19,17 +19,16 @@ abstract class LotteryNumberCountDatabase : RoomDatabase() {
 
         fun getDatabase(
             context: Context
-        ): LotteryNumberCountDatabase
-            {
-                // if the INSTANCE is not null, then return it,
-                // if it is, then create the database
-                return INSTANCE ?: synchronized(this) {
-                    val instance = buildDatabaseInstance(context)
-                    INSTANCE = instance
-                    // return instance
-                    instance
-                }
+        ): LotteryNumberCountDatabase {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
+            return INSTANCE ?: synchronized(this) {
+                val instance = buildDatabaseInstance(context)
+                INSTANCE = instance
+                // return instance
+                instance
             }
+        }
 
         private fun buildDatabaseInstance(context: Context) =
             Room.databaseBuilder(context, LotteryNumberCountDatabase::class.java, DB_NAME)

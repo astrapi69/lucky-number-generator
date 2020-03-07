@@ -10,12 +10,15 @@ const val DB_NAME = "LotteryNumberCountDatabase.db"
 
 fun main(args: Array<String>) {
     val numberCounterMap = LotteryNumberCount(
-        id = UUID.randomUUID(), lotteryGameType = "6of49", numberCounterMap = MapFactory.newCounterMap(
-        ListFactory.newRangeList(
-            1,
-            49
+        id = UUID.randomUUID(),
+        lotteryGameType = "6of49",
+        numberCounterMap = MapFactory.newCounterMap(
+            ListFactory.newRangeList(
+                1,
+                49
+            )
         )
-    ))
+    )
     print(numberCounterMap)
 }
 

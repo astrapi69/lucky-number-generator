@@ -17,7 +17,7 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
 
     private val dao: LotteryNumberCountDao =
         LotteryNumberCountDatabase.getDatabase(application).lotteryNumberCountDao()
-    var lotteryNumberCountList:LiveData<List<LotteryNumberCount>>
+    var lotteryNumberCountList: LiveData<List<LotteryNumberCount>>
 
     init {
         repository = LotteryNumberCountRepository(dao)
@@ -28,17 +28,17 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
         repository.insert(data)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 //Refresh Page data
                 getData()
-            },{
+            }, {
 
             }).let {
                 compositeDisposable.add(it)
             }
     }
 
-    private fun getData(){
+    private fun getData() {
         lotteryNumberCountList = repository.findAll()
     }
 
@@ -52,10 +52,10 @@ class LotteryNumberCountViewModel(application: Application) : AndroidViewModel(a
         repository.delete(lotteryNumberCount)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 //Refresh Page data
                 getData()
-            },{
+            }, {
 
             }).let {
                 compositeDisposable.add(it)

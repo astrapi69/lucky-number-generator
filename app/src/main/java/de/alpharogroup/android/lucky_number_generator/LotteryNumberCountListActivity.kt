@@ -24,7 +24,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
     private var viewModel: LotteryNumberCountViewModel? = null
 
-    private lateinit var recyclerView:  RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     private lateinit var btnMergeThem: Button
     private lateinit var btnDeselectAll: Button
@@ -37,7 +37,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     private var disposable: Disposable? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
@@ -77,16 +77,15 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
     }
 
     private fun toggleButtons() {
-        if (adapter.selected.isEmpty()){
+        if (adapter.selected.isEmpty()) {
             btnMergeThem.setEnabled(false)
             btnDeselectAll.setEnabled(false)
             btnDeleteSelected.setEnabled(false)
             btnShareSelected.setEnabled(false)
-        }
-        else{
-            if(2 <= adapter.selected.size ){
+        } else {
+            if (2 <= adapter.selected.size) {
                 btnMergeThem.setEnabled(true)
-            }else{
+            } else {
                 btnMergeThem.setEnabled(false)
             }
             btnDeselectAll.setEnabled(true)
@@ -112,18 +111,18 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
 
     private fun handleZeroCase() {
         recyclerView.visibility = View.GONE
-        Toast.makeText(this,"No Records Found",Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "No Records Found", Toast.LENGTH_LONG).show()
     }
 
     fun onSelectAll(view: View) {
         adapter.selectAll()
     }
 
-    fun onDeselectAll(view: View){
+    fun onDeselectAll(view: View) {
         adapter.clearSelected()
     }
 
-    fun onShareSelected(view: View){
+    fun onShareSelected(view: View) {
         adapter.selected
         val listLotteryNumberCountConverter =
             ListLotteryNumberCountConverter()
@@ -136,7 +135,7 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         startActivity(shareIntent)
     }
 
-    fun onDeleteSelected(view: View){
+    fun onDeleteSelected(view: View) {
         val deleteSelected = adapter.deleteSelected()
         deleteSelected?.forEach {
             viewModel?.delete(it)
@@ -145,14 +144,14 @@ class LotteryNumberCountListActivity : AppCompatActivity() {
         adapter.clearSelected()
     }
 
-    fun onMergeSelected(view: View){
+    fun onMergeSelected(view: View) {
         val mergeSelected = adapter.mergeSelected()
         mergeSelected?.let {
             viewModel?.insert(it)
         }
     }
 
-    fun onImport(view: View){
+    fun onImport(view: View) {
         val intent = Intent(this, ImportLotteryNumberCountListActivity::class.java)
         startActivity(intent)
     }

@@ -13,7 +13,7 @@ class LotteryNumberCountRepository(private val dao: LotteryNumberCountDao) {
         return dao.findAll()
     }
 
-    fun delete(data: LotteryNumberCount):Completable {
+    fun delete(data: LotteryNumberCount): Completable {
         return dao.delete(data)
     }
 
@@ -21,7 +21,7 @@ class LotteryNumberCountRepository(private val dao: LotteryNumberCountDao) {
         dao.update(data)
     }
 
-    suspend fun deleteAll(){
+    suspend fun deleteAll() {
         dao.deleteAll()
     }
 }

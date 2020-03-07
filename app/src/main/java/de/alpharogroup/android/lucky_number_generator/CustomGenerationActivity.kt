@@ -31,7 +31,7 @@ class CustomGenerationActivity : AppCompatActivity() {
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
@@ -78,8 +78,9 @@ class CustomGenerationActivity : AppCompatActivity() {
     private fun String.isNumber(): Boolean = StringExtensions.isNumber(this)
     private fun String.isNumberBetween(min: Int, max: Int): Boolean =
         this.isNumber() && MathExtensions.isBetween(min, max, this.toInt(), true, true)
+
     private fun String.isNumberAndGreaterAs(number: Int): Boolean =
-        this.isNumber() && number< this.toInt()
+        this.isNumber() && number < this.toInt()
 
     fun onGenerateCustomNumbers(view: View) {
         val errorMessage = resources.getString(R.string.validation_not_empty)
@@ -114,7 +115,7 @@ class CustomGenerationActivity : AppCompatActivity() {
             return
         }
         if (txtMaxVolume.validate(between1to100Message) { s ->
-                 s.isNumberBetween(1, 100)
+                s.isNumberBetween(1, 100)
             }) {
             return
         }
@@ -149,11 +150,15 @@ class CustomGenerationActivity : AppCompatActivity() {
                 maxVolume,
                 drawCount
             )
-        val mergeAndSummarize = MapExtensions.mergeAndSummarize(MapFactory.newCounterMap(drawFromMultiMap), drawFromMultiMap)
+        val mergeAndSummarize = MapExtensions.mergeAndSummarize(
+            MapFactory.newCounterMap(drawFromMultiMap),
+            drawFromMultiMap
+        )
         val toSortedMap = mergeAndSummarize.toSortedMap()
         val lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "custom",
-            numberCounterMap = toSortedMap)
+            numberCounterMap = toSortedMap
+        )
         viewModel?.insert(lotteryNumberCount)
         val drawFromMultiMapString = drawFromMultiMap.toString()
         val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
