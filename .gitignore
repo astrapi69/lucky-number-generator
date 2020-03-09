@@ -19,6 +19,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/compiler.xml
+/.idea/markdown-navigator.xml
 
 # Built application files
 *.apk
@@ -75,3 +76,4 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+/app/release/*.aab
