@@ -7,7 +7,7 @@ apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     viewBinding.enabled = true
     defaultConfig {
         applicationId "de.alpharogroup.android.lucky_number_generator"
