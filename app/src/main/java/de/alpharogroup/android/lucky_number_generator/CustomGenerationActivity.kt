@@ -2,11 +2,13 @@ package de.alpharogroup.android.lucky_number_generator
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
@@ -14,6 +16,7 @@ import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountVie
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
+import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersFactory
 import de.alpharogroup.math.MathExtensions
 import de.alpharogroup.string.StringExtensions
 import java.util.*
@@ -28,6 +31,8 @@ class CustomGenerationActivity : AppCompatActivity() {
     private lateinit var txtMinVolume: EditText
     private lateinit var txtMaxVolume: EditText
     private lateinit var txtIterations: EditText
+    private lateinit var progressBar: ProgressBar
+    private lateinit var handler: Handler
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,6 +78,8 @@ class CustomGenerationActivity : AppCompatActivity() {
         txtMinVolume = findViewById(R.id.txt_min_volume)
         txtMaxVolume = findViewById(R.id.txt_max_volume)
         txtIterations = findViewById(R.id.txt_iterations)
+        progressBar = findViewById(R.id.progressBar)
+        handler = Handler()
     }
 
     private fun String.isNumber(): Boolean = StringExtensions.isNumber(this)
@@ -124,11 +131,11 @@ class CustomGenerationActivity : AppCompatActivity() {
             }) {
             return
         }
-        if (txtIterations.validate(errorMessage) { s ->
-                s.isNotEmpty() && s.isNumberBetween(1, 500)
-            }) {
-            return
-        }
+//        if (txtIterations.validate(errorMessage) { s ->
+//                s.isNotEmpty() && s.isNumberBetween(1, 500)
+//            }) {
+//            return
+//        }
         onDraw()
     }
 
@@ -143,29 +150,86 @@ class CustomGenerationActivity : AppCompatActivity() {
         val minVolume = minVolumeString.ifEmpty { "1" }.toInt()
         val maxVolume = maxVolumeString.ifEmpty { "50" }.toInt()
         val drawCount = iterations.ifEmpty { "500" }.toInt()
-        val drawFromMultiMap =
-            DrawnLotteryNumbersExtensions.drawFromMultiMap(
-                maxNumbers,
-                minVolume,
-                maxVolume,
-                drawCount
-            )
-        val mergeAndSummarize = MapExtensions.mergeAndSummarize(
-            MapFactory.newCounterMap(drawFromMultiMap),
-            drawFromMultiMap
-        )
-        val toSortedMap = mergeAndSummarize.toSortedMap()
-        val lotteryNumberCount = LotteryNumberCount(
-            id = UUID.randomUUID(), lotteryGameType = "custom",
-            numberCounterMap = toSortedMap
-        )
-        viewModel?.insert(lotteryNumberCount)
-        val drawFromMultiMapString = drawFromMultiMap.toString()
-        val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
-            putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
-        }
-        startActivity(intent)
 
+        if(500<drawCount) {
+            var numberCounterMap: MutableMap<Int, Int>
+            var mergeAndSummarize: MutableMap<Int, Int>
+            var drawFromMultiMapSet: MutableSet<Int>
+            var counter = drawCount
+            Thread(Runnable {
+                numberCounterMap = DrawnLotteryNumbersFactory
+                    .newNumberCounterMap(minVolume, maxVolume)
+
+                while (500 < counter) {
+                    drawFromMultiMapSet =
+                        DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                            maxNumbers,
+                            minVolume,
+                            maxVolume,
+                            500
+                        )
+                    numberCounterMap = MapExtensions.mergeAndSummarize(
+                        numberCounterMap,
+                        drawFromMultiMapSet, true
+                    )
+                    handler.post {
+                        progressBar.progress = counter
+                    }
+                    try {
+                        Thread.sleep(16)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                    counter -= 500;
+                }
+                drawFromMultiMapSet =
+                    DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                        maxNumbers,
+                        minVolume,
+                        maxVolume,
+                        500
+                    )
+                val mergeAndSummarize = MapExtensions.mergeAndSummarize(
+                    numberCounterMap,
+                    drawFromMultiMapSet
+                )
+                val toSortedMap = mergeAndSummarize.toSortedMap()
+                val lotteryNumberCount = LotteryNumberCount(
+                    id = UUID.randomUUID(), lotteryGameType = "custom",
+                    numberCounterMap = toSortedMap
+                )
+                viewModel?.insert(lotteryNumberCount)
+                val drawFromMultiMapString = lotteryNumberCount.numberCounterMap.values.joinToString()
+                val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
+                    putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
+                }
+                startActivity(intent)
+            }).start()
+
+        } else{
+            val drawFromMultiMap =
+                DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                    maxNumbers,
+                    minVolume,
+                    maxVolume,
+                    drawCount
+                )
+            val mergeAndSummarize = MapExtensions.mergeAndSummarize(
+                MapFactory.newCounterMap(drawFromMultiMap),
+                drawFromMultiMap
+            )
+            val toSortedMap = mergeAndSummarize.toSortedMap()
+            val lotteryNumberCount = LotteryNumberCount(
+                id = UUID.randomUUID(), lotteryGameType = "custom",
+                numberCounterMap = toSortedMap
+            )
+            viewModel?.insert(lotteryNumberCount)
+            val drawFromMultiMapString = drawFromMultiMap.toString()
+            val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
+                putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
+            }
+            startActivity(intent)
+        }
     }
 
     private fun String.removeFirstAndLastCharacter(): String {
