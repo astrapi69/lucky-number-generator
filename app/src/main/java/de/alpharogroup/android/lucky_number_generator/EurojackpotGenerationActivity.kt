@@ -11,8 +11,9 @@ import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountVie
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
-import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
-import de.alpharogroup.random.number.RandomPrimitivesExtensions
+import de.alpharogroup.lottery.drawing.DrawLotteryNumbersFactory
+import de.alpharogroup.lottery.drawing.DrawMultiMapLotteryNumbersFactory
+import de.alpharogroup.random.number.RandomIntFactory
 import java.util.*
 
 class EurojackpotGenerationActivity : AppCompatActivity() {
@@ -77,9 +78,9 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         val maxNumbers = 5
         val minVolume = 1
         val maxVolume = 50
-        val drawCount = RandomPrimitivesExtensions.getRandomIntBetween(200, 1000)
+        val drawCount = RandomIntFactory.randomIntBetween(200, 1000)
         val eurojackpotNumbers =
-            DrawnLotteryNumbersExtensions.drawFromMultiMap(
+            DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
                 maxNumbers,
                 minVolume,
                 maxVolume,
@@ -112,7 +113,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         val maxNumbers = 2
         val minVolume = 1
         val maxVolume = 10
-        val eurojackpotNumbers = DrawnLotteryNumbersExtensions
+        val eurojackpotNumbers = DrawLotteryNumbersFactory
             .draw(maxNumbers, minVolume, maxVolume)
         val toIntArray = eurojackpotNumbers.toIntArray()
 

@@ -13,12 +13,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
+import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
-import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
-import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersFactory
+import de.alpharogroup.collections.set.SetFactory
+import de.alpharogroup.comparators.ComparatorFactory
+import de.alpharogroup.lottery.drawing.DrawMultiMapLotteryNumbersFactory
 import de.alpharogroup.math.MathExtensions
 import de.alpharogroup.string.StringExtensions
+import java.security.SecureRandom
 import java.util.*
 
 class CustomGenerationActivity : AppCompatActivity() {
@@ -157,21 +160,24 @@ class CustomGenerationActivity : AppCompatActivity() {
             var drawFromMultiMapSet: MutableSet<Int>
             var counter = drawCount
             Thread(Runnable {
-                numberCounterMap = DrawnLotteryNumbersFactory
+                numberCounterMap = MapFactory
                     .newNumberCounterMap(minVolume, maxVolume)
 
                 while (500 < counter) {
                     drawFromMultiMapSet =
-                        DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                        DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
                             maxNumbers,
                             minVolume,
                             maxVolume,
                             500
                         )
-                    numberCounterMap = MapExtensions.mergeAndSummarize(
+
+                    mergeAndSummarize = MapExtensions.mergeAndSummarize(
                         numberCounterMap,
-                        drawFromMultiMapSet, true
+                        drawFromMultiMapSet
                     )
+
+                    numberCounterMap = mergeAndSummarize.toSortedMap()
                     handler.post {
                         progressBar.progress = counter
                     }
@@ -180,26 +186,30 @@ class CustomGenerationActivity : AppCompatActivity() {
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
-                    counter -= 500;
+                    counter -= 1;
                 }
                 drawFromMultiMapSet =
-                    DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                    DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
                         maxNumbers,
                         minVolume,
                         maxVolume,
                         500
                     )
-                val mergeAndSummarize = MapExtensions.mergeAndSummarize(
+                mergeAndSummarize = MapExtensions.mergeAndSummarize(
                     numberCounterMap,
                     drawFromMultiMapSet
                 )
+                    // TODO
                 val toSortedMap = mergeAndSummarize.toSortedMap()
+//                    .take(maxNumbers)
+
                 val lotteryNumberCount = LotteryNumberCount(
                     id = UUID.randomUUID(), lotteryGameType = "custom",
                     numberCounterMap = toSortedMap
                 )
                 viewModel?.insert(lotteryNumberCount)
-                val drawFromMultiMapString = lotteryNumberCount.numberCounterMap.values.joinToString()
+                val drawFromMultiMapString =
+                    lotteryNumberCount.numberCounterMap.values.joinToString()
                 val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
                     putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
                 }
@@ -208,7 +218,7 @@ class CustomGenerationActivity : AppCompatActivity() {
 
         } else{
             val drawFromMultiMap =
-                DrawnLotteryNumbersExtensions.drawFromMultiMap(
+                DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
                     maxNumbers,
                     minVolume,
                     maxVolume,

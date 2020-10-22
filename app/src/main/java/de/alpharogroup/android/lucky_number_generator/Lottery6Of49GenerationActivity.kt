@@ -11,8 +11,9 @@ import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountVie
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
-import de.alpharogroup.lottery.drawing.DrawnLotteryNumbersExtensions
-import de.alpharogroup.random.number.RandomPrimitivesExtensions
+import de.alpharogroup.lottery.drawing.DrawLotteryNumbersFactory
+import de.alpharogroup.lottery.drawing.DrawSuperNumbersFactory
+import de.alpharogroup.random.number.RandomIntFactory
 import java.util.*
 
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
@@ -74,9 +75,9 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
     private fun onDraw() {
         val max = 6
         val volume = 49
-        val lotteryNumbers = DrawnLotteryNumbersExtensions.draw(max, volume)
-        val superNumber = DrawnLotteryNumbersExtensions.drawSuperNumber(lotteryNumbers, volume)
-        val superSixNumber = RandomPrimitivesExtensions.randomIntBetween(1, 10)
+        val lotteryNumbers = DrawLotteryNumbersFactory.draw(max, volume)
+        val superNumber = DrawSuperNumbersFactory.drawSuperNumber(lotteryNumbers, volume)
+        val superSixNumber = RandomIntFactory.randomIntBetween(1, 10)
 
         val toIntArray = lotteryNumbers.toIntArray()
         txtFirstNumber1Of49.setText(toIntArray[0].toString())
