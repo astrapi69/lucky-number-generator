@@ -58,4 +58,5 @@
     <string name="default_min_volume_number">1</string>
     <string name="default_max_volume_number">50</string>
     <string name="default_numbers_to_draw">5</string>
+    <string name="drawdate">Ziehung</string>
 </resources>

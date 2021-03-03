@@ -1,6 +1,7 @@
 package de.alpharogroup.android.lucky_number_generator
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -13,8 +14,17 @@ import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawLotteryNumbersFactory
 import de.alpharogroup.lottery.drawing.DrawSuperNumbersFactory
+import de.alpharogroup.random.SecureRandomBean
+import de.alpharogroup.random.SecureRandomBuilder
 import de.alpharogroup.random.number.RandomIntFactory
+import java.security.Provider
+import java.security.SecureRandom
+import java.security.Security
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
 
@@ -26,7 +36,9 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
     private lateinit var txtSixthNumber1Of49: EditText
     private lateinit var txtSuperNumber1Of49: EditText
     private lateinit var txtSuperSixNumber1Of49: EditText
+    private lateinit var txtDrawDate: EditText
     private var viewModel: LotteryNumberCountViewModel? = null
+    private var defaultDateFormat: String = "dd.MM.yyyy"
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -55,6 +67,14 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         txtSixthNumber1Of49 = findViewById(R.id.sixthNumber1Of49)
         txtSuperNumber1Of49 = findViewById(R.id.superNumber1Of49)
         txtSuperSixNumber1Of49 = findViewById(R.id.superSixNumber1Of49)
+        txtDrawDate = findViewById(R.id.drawDate)
+        txtDrawDate.inputType = InputType.TYPE_NULL
+        EditTextDatePicker(
+            txtDrawDate,
+            this,
+            defaultDateFormat
+        )
+
     }
 
     private fun disableEditTexts() {
@@ -72,12 +92,30 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         onDraw()
     }
 
+    @Throws(ParseException::class)
+    fun parseToDate(date: String?, format: String?): Date {
+        val df: DateFormat = SimpleDateFormat(format)
+        var parsedDate: Date? = null
+        parsedDate = df.parse(date)
+        return parsedDate
+    }
+
     private fun onDraw() {
         val max = 6
         val volume = 49
-        val lotteryNumbers = DrawLotteryNumbersFactory.draw(max, volume)
-        val superNumber = DrawSuperNumbersFactory.drawSuperNumber(lotteryNumbers, volume)
-        val superSixNumber = RandomIntFactory.randomIntBetween(1, 10)
+        val currentDrawDateValue: String = txtDrawDate.text.toString()
+        val currentDrawDate: Date = parseToDate(currentDrawDateValue, defaultDateFormat)
+        val secureRandomProviders: Array<Provider> = Security.getProviders("SecureRandom.SHA1PRNG")
+        val name = secureRandomProviders[0].name
+        val secureRandom: SecureRandom = SecureRandomBuilder
+            .getInstance(
+                SecureRandomBean.DEFAULT_ALGORITHM,
+                name,
+                currentDrawDate.time
+            ).build()
+        val lotteryNumbers = DrawLotteryNumbersFactory.draw(max, volume, secureRandom)
+        val superNumber = DrawSuperNumbersFactory.drawSuperNumber(lotteryNumbers, volume, secureRandom)
+        val superSixNumber = RandomIntFactory.randomIntBetween(1, 10, secureRandom)
 
         val toIntArray = lotteryNumbers.toIntArray()
         txtFirstNumber1Of49.setText(toIntArray[0].toString())
