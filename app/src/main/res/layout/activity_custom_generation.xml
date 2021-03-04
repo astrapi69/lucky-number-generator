@@ -81,18 +81,18 @@
         android:layout_height="@dimen/layout_height_size"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
         android:background="#333"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/iterations"
         android:inputType="number"
+        android:labelFor="@id/lbl_iterations"
         android:text="@string/default_iteration_number"
         android:textColor="#fff"
-        android:labelFor="@id/lbl_iterations"
-        android:hint="@string/iterations"
-        android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/lbl_iterations"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_spinner_algorithm"/>
+        app:layout_constraintTop_toBottomOf="@+id/lbl_max_volume" />
 
     <TextView
         android:id="@+id/lbl_numbers_to_draw"
@@ -135,36 +135,11 @@
         android:layout_width="192dp"
         android:layout_height="@dimen/layout_height_size"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="32dp"
         android:text="@string/iterations"
         android:textAlignment="viewStart"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_spinner_algorithm" />
-
-    <TextView
-        android:id="@+id/lbl_spinner_algorithm"
-        android:layout_width="192dp"
-        android:layout_height="@dimen/layout_height_size"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="@dimen/top_margin_size"
-        android:text="@string/algorithm"
-        android:textAlignment="viewStart"
-        android:textSize="@dimen/header_text_size"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_max_volume" />
-
-    <Spinner
-        android:id="@+id/spinner_algorithm"
-        android:layout_width="124dp"
-        android:layout_height="@dimen/layout_height_size"
-        android:layout_marginStart="@dimen/left_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
-        android:entries="@array/algorithm_array"
-        android:spinnerMode="dialog"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/lbl_spinner_algorithm"
         app:layout_constraintTop_toBottomOf="@+id/lbl_max_volume" />
 
     <Button
@@ -172,20 +147,41 @@
         android:layout_width="@dimen/layout_eurojackpot_full_width_size"
         android:layout_height="@dimen/layout_height_size"
         android:layout_marginStart="@dimen/left_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginTop="32dp"
         android:onClick="onGenerateCustomNumbers"
         android:text="@string/generate_my_lucky_numbers"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_draw_date_custom" />
+
+    <TextView
+        android:id="@+id/lbl_draw_date_custom"
+        android:layout_width="175dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/drawdate"
+        android:textAlignment="viewStart"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_iterations" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="@dimen/layout_eurojackpot_full_width_size"
-        android:layout_height="@dimen/layout_height_size"
-        android:layout_marginStart="@dimen/left_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_generate_my_lucky_cg_numbers" />
+    <EditText
+        android:id="@+id/drawDateCustom"
+        android:layout_width="144dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:background="#333"
+        android:textColor="#fff"
+        android:autofillHints=""
+        android:clickable="true"
+        android:ems="10"
+        android:hint="@string/hint_text_draw_date"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:labelFor="@id/lbl_draw_date_custom"
+        app:layout_constraintStart_toEndOf="@+id/lbl_draw_date_custom"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_iterations" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

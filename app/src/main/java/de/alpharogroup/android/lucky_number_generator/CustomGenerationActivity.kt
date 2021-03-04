@@ -4,20 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
-import de.alpharogroup.collections.list.ListFactory
+import de.alpharogroup.android.lucky_number_generator.extensions.Constants
+import de.alpharogroup.android.lucky_number_generator.extensions.Extensions
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
-import de.alpharogroup.collections.set.SetFactory
-import de.alpharogroup.comparators.ComparatorFactory
 import de.alpharogroup.lottery.drawing.DrawMultiMapLotteryNumbersFactory
 import de.alpharogroup.math.MathExtensions
 import de.alpharogroup.string.StringExtensions
@@ -34,7 +33,7 @@ class CustomGenerationActivity : AppCompatActivity() {
     private lateinit var txtMinVolume: EditText
     private lateinit var txtMaxVolume: EditText
     private lateinit var txtIterations: EditText
-    private lateinit var progressBar: ProgressBar
+    private lateinit var txtDrawDate: EditText
     private lateinit var handler: Handler
     private var viewModel: LotteryNumberCountViewModel? = null
 
@@ -81,7 +80,13 @@ class CustomGenerationActivity : AppCompatActivity() {
         txtMinVolume = findViewById(R.id.txt_min_volume)
         txtMaxVolume = findViewById(R.id.txt_max_volume)
         txtIterations = findViewById(R.id.txt_iterations)
-        progressBar = findViewById(R.id.progressBar)
+        txtDrawDate = findViewById(R.id.drawDateCustom)
+        txtDrawDate.inputType = InputType.TYPE_NULL
+        EditTextDatePicker(
+            txtDrawDate,
+            this,
+            Constants.DEFAULT_DATE_FORMAT
+        )
         handler = Handler()
     }
 
@@ -134,11 +139,11 @@ class CustomGenerationActivity : AppCompatActivity() {
             }) {
             return
         }
-//        if (txtIterations.validate(errorMessage) { s ->
-//                s.isNotEmpty() && s.isNumberBetween(1, 500)
-//            }) {
-//            return
-//        }
+        if (txtIterations.validate(errorMessage) { s ->
+                s.isNotEmpty() && s.isNumberBetween(1, 500)
+            }) {
+            return
+        }
         onDraw()
     }
 
@@ -153,93 +158,34 @@ class CustomGenerationActivity : AppCompatActivity() {
         val minVolume = minVolumeString.ifEmpty { "1" }.toInt()
         val maxVolume = maxVolumeString.ifEmpty { "50" }.toInt()
         val drawCount = iterations.ifEmpty { "500" }.toInt()
+        val currentDrawDateValue: String = txtDrawDate.text.toString()
+        val currentDrawDate: Date =
+            Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_FORMAT)
+        val secureRandom: SecureRandom = Extensions.newSecureRandom(currentDrawDate)
 
-        if(500<drawCount) {
-            var numberCounterMap: MutableMap<Int, Int>
-            var mergeAndSummarize: MutableMap<Int, Int>
-            var drawFromMultiMapSet: MutableSet<Int>
-            var counter = drawCount
-            Thread(Runnable {
-                numberCounterMap = MapFactory
-                    .newNumberCounterMap(minVolume, maxVolume)
-
-                while (500 < counter) {
-                    drawFromMultiMapSet =
-                        DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
-                            maxNumbers,
-                            minVolume,
-                            maxVolume,
-                            500
-                        )
-
-                    mergeAndSummarize = MapExtensions.mergeAndSummarize(
-                        numberCounterMap,
-                        drawFromMultiMapSet
-                    )
-
-                    numberCounterMap = mergeAndSummarize.toSortedMap()
-                    handler.post {
-                        progressBar.progress = counter
-                    }
-                    try {
-                        Thread.sleep(16)
-                    } catch (e: InterruptedException) {
-                        e.printStackTrace()
-                    }
-                    counter -= 1;
-                }
-                drawFromMultiMapSet =
-                    DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
-                        maxNumbers,
-                        minVolume,
-                        maxVolume,
-                        500
-                    )
-                mergeAndSummarize = MapExtensions.mergeAndSummarize(
-                    numberCounterMap,
-                    drawFromMultiMapSet
-                )
-                    // TODO
-                val toSortedMap = mergeAndSummarize.toSortedMap()
-//                    .take(maxNumbers)
-
-                val lotteryNumberCount = LotteryNumberCount(
-                    id = UUID.randomUUID(), lotteryGameType = "custom",
-                    numberCounterMap = toSortedMap
-                )
-                viewModel?.insert(lotteryNumberCount)
-                val drawFromMultiMapString =
-                    lotteryNumberCount.numberCounterMap.values.joinToString()
-                val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
-                    putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
-                }
-                startActivity(intent)
-            }).start()
-
-        } else{
-            val drawFromMultiMap =
-                DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
-                    maxNumbers,
-                    minVolume,
-                    maxVolume,
-                    drawCount
-                )
-            val mergeAndSummarize = MapExtensions.mergeAndSummarize(
-                MapFactory.newCounterMap(drawFromMultiMap),
-                drawFromMultiMap
+        val drawFromMultiMap =
+            DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
+                maxNumbers,
+                minVolume,
+                maxVolume,
+                drawCount,
+                secureRandom
             )
-            val toSortedMap = mergeAndSummarize.toSortedMap()
-            val lotteryNumberCount = LotteryNumberCount(
-                id = UUID.randomUUID(), lotteryGameType = "custom",
-                numberCounterMap = toSortedMap
-            )
-            viewModel?.insert(lotteryNumberCount)
-            val drawFromMultiMapString = drawFromMultiMap.toString()
-            val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
-                putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
-            }
-            startActivity(intent)
+        val mergeAndSummarize = MapExtensions.mergeAndSummarize(
+            MapFactory.newCounterMap(drawFromMultiMap),
+            drawFromMultiMap
+        )
+        val toSortedMap = mergeAndSummarize.toSortedMap()
+        val lotteryNumberCount = LotteryNumberCount(
+            id = UUID.randomUUID(), lotteryGameType = "custom",
+            numberCounterMap = toSortedMap
+        )
+        viewModel?.insert(lotteryNumberCount)
+        val drawFromMultiMapString = drawFromMultiMap.toString()
+        val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
+            putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
         }
+        startActivity(intent)
     }
 
     private fun String.removeFirstAndLastCharacter(): String {
