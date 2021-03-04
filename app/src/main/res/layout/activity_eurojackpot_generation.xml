@@ -150,17 +150,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thirdNumber1Of50" />
 
+    <TextView
+        android:id="@+id/lbl_draw_date_ej"
+        android:layout_width="175dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/drawdate"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_euro_numbers" />
+
+    <EditText
+        android:id="@+id/drawDateEuroJackpot"
+        android:layout_width="144dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:background="#333"
+        android:textColor="#fff"
+        android:autofillHints=""
+        android:clickable="true"
+        android:ems="10"
+        android:hint="@string/hint_text_draw_date"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:labelFor="@id/lbl_draw_date_ej"
+        app:layout_constraintStart_toEndOf="@+id/lbl_draw_date_ej"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_euro_numbers" />
+
     <Button
         android:id="@+id/btn_generate_my_lucky_ejp_numbers"
         android:layout_width="@dimen/layout_eurojackpot_full_width_size"
         android:layout_height="@dimen/layout_height_box_size"
-        android:layout_marginStart="@dimen/left_margin_size"
-        android:layout_marginTop="@dimen/top_margin_size"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:onClick="onGenerate1of50Numbers"
         android:text="@string/generate_my_lucky_numbers"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstEuroNumber1Of10" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_draw_date_ej" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

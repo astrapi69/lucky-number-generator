@@ -24,6 +24,7 @@
     <string name="hint_text_super_number">Super number</string>
     <string name="hint_text_super_six_number">Super6</string>
     <string name="hint_text_custom_generated">Generated numbers</string>
+    <string name="hint_text_draw_date">The draw date</string>
     <string name="euro_numbers">Euro numbers</string>
     <string name="numbers_to_draw">Numbers to draw</string>
     <string name="min_volume">Minimum number</string>

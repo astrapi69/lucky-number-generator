@@ -1,6 +1,7 @@
 package de.alpharogroup.android.lucky_number_generator
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -8,12 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCount
 import de.alpharogroup.android.lucky_number_generator.data.LotteryNumberCountViewModel
+import de.alpharogroup.android.lucky_number_generator.extensions.Constants
+import de.alpharogroup.android.lucky_number_generator.extensions.Extensions
 import de.alpharogroup.collections.list.ListFactory
 import de.alpharogroup.collections.map.MapExtensions
 import de.alpharogroup.collections.map.MapFactory
 import de.alpharogroup.lottery.drawing.DrawLotteryNumbersFactory
 import de.alpharogroup.lottery.drawing.DrawMultiMapLotteryNumbersFactory
 import de.alpharogroup.random.number.RandomIntFactory
+import java.security.SecureRandom
 import java.util.*
 
 class EurojackpotGenerationActivity : AppCompatActivity() {
@@ -25,6 +29,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
     lateinit var txtFifthNumber1Of50: EditText
     lateinit var txtFirstEuroNumber1Of10: EditText
     lateinit var txtSecondEuroNumber1Of10: EditText
+    private lateinit var txtDrawDate: EditText
     private var viewModel: LotteryNumberCountViewModel? = null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,6 +58,13 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         txtFifthNumber1Of50 = findViewById<EditText>(R.id.fifthNumber1Of50)
         txtFirstEuroNumber1Of10 = findViewById<EditText>(R.id.firstEuroNumber1Of10)
         txtSecondEuroNumber1Of10 = findViewById<EditText>(R.id.secondEuroNumber1Of10)
+        txtDrawDate = findViewById(R.id.drawDateEuroJackpot)
+        txtDrawDate.inputType = InputType.TYPE_NULL
+        EditTextDatePicker(
+            txtDrawDate,
+            this,
+            Constants.DEFAULT_DATE_FORMAT
+        )
     }
 
     private fun disableEditTexts() {
@@ -79,12 +91,16 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         val minVolume = 1
         val maxVolume = 50
         val drawCount = RandomIntFactory.randomIntBetween(200, 1000)
+        val currentDrawDateValue: String = txtDrawDate.text.toString()
+        val currentDrawDate: Date = Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_FORMAT)
+        val secureRandom: SecureRandom = Extensions.newSecureRandom(currentDrawDate)
         val eurojackpotNumbers =
             DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(
                 maxNumbers,
                 minVolume,
                 maxVolume,
-                drawCount
+                drawCount,
+                secureRandom
             )
         val toIntArray = eurojackpotNumbers.toIntArray()
 
@@ -93,7 +109,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         txtThirdNumber1Of50.setText(toIntArray[2].toString())
         txtFourthNumber1Of50.setText(toIntArray[3].toString())
         txtFifthNumber1Of50.setText(toIntArray[4].toString())
-        var numberCounterMap = MapFactory.newCounterMap(
+        val numberCounterMap = MapFactory.newCounterMap(
             ListFactory.newRangeList(
                 1,
                 49
@@ -102,7 +118,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         val mergeAndSummarize =
             MapExtensions.mergeAndSummarize(numberCounterMap, eurojackpotNumbers)
         val filteredMap = mergeAndSummarize.filterValues { it > 0 }
-        var lotteryNumberCount = LotteryNumberCount(
+        val lotteryNumberCount = LotteryNumberCount(
             id = UUID.randomUUID(), lotteryGameType = "eurojackpot",
             numberCounterMap = filteredMap.toMutableMap()
         )

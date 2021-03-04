@@ -169,19 +169,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstNumber1Of49" />
 
-    <TextView
-        android:id="@+id/lbl_draw_date"
-        android:layout_width="153dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="196dp"
-        android:focusable="false"
-        android:text="@string/drawdate"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNumber1Of49" />
 
     <TextView
         android:id="@+id/lbl_super_six_number"
@@ -197,6 +184,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_supernumber" />
 
+    <TextView
+        android:id="@+id/lbl_draw_date"
+        android:layout_width="153dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="196dp"
+        android:focusable="false"
+        android:text="@string/drawdate"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNumber1Of49" />
+
+    <EditText
+        android:id="@+id/drawDate"
+        android:layout_width="144dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:background="#333"
+        android:textColor="#fff"
+        android:hint="@string/hint_text_draw_date"
+        android:autofillHints=""
+        android:clickable="true"
+        android:ems="10"
+        android:inputType="date"
+        android:labelFor="@id/lbl_draw_date"
+        app:layout_constraintStart_toEndOf="@+id/lbl_draw_date"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number" />
+
     <Button
         android:id="@+id/btn_generate_my_lucky_lotto_numbers"
         android:layout_width="329dp"
@@ -208,17 +227,6 @@
         android:textAllCaps="false"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawDate"></Button>
-
-    <EditText
-        android:id="@+id/drawDate"
-        android:layout_width="144dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:clickable="true"
-        android:ems="10"
-        app:layout_constraintStart_toEndOf="@+id/lbl_draw_date"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number" />
+        app:layout_constraintTop_toBottomOf="@+id/drawDate"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
