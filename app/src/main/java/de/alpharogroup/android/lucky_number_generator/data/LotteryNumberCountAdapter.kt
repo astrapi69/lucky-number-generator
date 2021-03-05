@@ -31,7 +31,6 @@ class LotteryNumberCountAdapter internal constructor(
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(position)
-
     }
 
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -116,6 +115,7 @@ class LotteryNumberCountAdapter internal constructor(
             selected.forEach {
                 map = MapExtensions.mergeAndSummarize(map, it.numberCounterMap, true)
             }
+            map = MapExtensions.sortByValue(map, true);
             numberCounterMap = LotteryNumberCount(
                 id = UUID.randomUUID(), lotteryGameType = "merged", numberCounterMap = map
             )
