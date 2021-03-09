@@ -32,4 +32,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun onDrawing(view: View) {
+        val intent = Intent(this, DrawingActivity::class.java)
+        startActivity(intent)
+    }
+
 }
