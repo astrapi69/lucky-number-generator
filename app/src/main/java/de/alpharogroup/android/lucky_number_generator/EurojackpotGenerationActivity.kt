@@ -60,10 +60,10 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         txtSecondEuroNumber1Of10 = findViewById<EditText>(R.id.secondEuroNumber1Of10)
         txtDrawDate = findViewById(R.id.drawDateEuroJackpot)
         txtDrawDate.inputType = InputType.TYPE_NULL
-        EditTextDatePicker(
+        EditTextDateTimePicker(
             txtDrawDate,
             this,
-            Constants.DEFAULT_DATE_FORMAT
+            Constants.DEFAULT_DATE_TIME_FORMAT
         )
     }
 
@@ -92,7 +92,7 @@ class EurojackpotGenerationActivity : AppCompatActivity() {
         val maxVolume = 50
         val drawCount = RandomIntFactory.randomIntBetween(200, 1000)
         val currentDrawDateValue: String = txtDrawDate.text.toString()
-        val currentDrawDate: Date = Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_FORMAT)
+        val currentDrawDate: Date = Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_TIME_FORMAT)
         val secureRandom: SecureRandom = Extensions.newSecureRandom(currentDrawDate)
         val eurojackpotNumbers =
             DrawMultiMapLotteryNumbersFactory.drawFromMultiMap(

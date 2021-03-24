@@ -82,10 +82,10 @@ class CustomGenerationActivity : AppCompatActivity() {
         txtIterations = findViewById(R.id.txt_iterations)
         txtDrawDate = findViewById(R.id.drawDateCustom)
         txtDrawDate.inputType = InputType.TYPE_NULL
-        EditTextDatePicker(
+        EditTextDateTimePicker(
             txtDrawDate,
             this,
-            Constants.DEFAULT_DATE_FORMAT
+            Constants.DEFAULT_DATE_TIME_FORMAT
         )
         handler = Handler()
     }
@@ -160,7 +160,7 @@ class CustomGenerationActivity : AppCompatActivity() {
         val drawCount = iterations.ifEmpty { "500" }.toInt()
         val currentDrawDateValue: String = txtDrawDate.text.toString()
         val currentDrawDate: Date =
-            Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_FORMAT)
+            Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_TIME_FORMAT)
         val secureRandom: SecureRandom = Extensions.newSecureRandom(currentDrawDate)
 
         val drawFromMultiMap =

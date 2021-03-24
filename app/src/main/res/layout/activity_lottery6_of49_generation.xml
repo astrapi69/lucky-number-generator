@@ -31,7 +31,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -48,7 +48,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/firstNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -65,7 +65,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/secondNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -82,7 +82,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/thirdNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -99,7 +99,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/fourthNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -116,7 +116,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/fifthNumber1Of49"
         app:layout_constraintTop_toBottomOf="@+id/lbl_lottery_6_of_49" />
@@ -133,7 +133,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/lbl_supernumber"
         app:layout_constraintTop_toBottomOf="@+id/sixthNumber1Of49" />
@@ -150,7 +150,7 @@
         android:gravity="center"
         android:background="@drawable/rounded_textview"
         android:textColor="@android:color/white"
-        android:hint=""
+        android:hint="@string/one_empty_space"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/lbl_super_six_number"
         app:layout_constraintTop_toBottomOf="@+id/superNumber1Of49" />
@@ -189,31 +189,31 @@
         android:layout_width="153dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="32dp"
         android:focusable="false"
         android:text="@string/drawdate"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNumber1Of49" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number" />
 
     <EditText
         android:id="@+id/drawDate"
-        android:layout_width="144dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        android:background="#333"
-        android:textColor="#fff"
-        android:hint="@string/hint_text_draw_date"
+        android:layout_width="160dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:autofillHints=""
+        android:background="#333"
         android:clickable="true"
         android:ems="10"
-        android:inputType="date"
         android:focusable="false"
+        android:gravity="center"
+        android:hint="@string/hint_text_draw_date"
+        android:inputType="date"
         android:labelFor="@id/lbl_draw_date"
+        android:textColor="#fff"
         app:layout_constraintStart_toEndOf="@+id/lbl_draw_date"
         app:layout_constraintTop_toBottomOf="@+id/lbl_super_six_number" />
 

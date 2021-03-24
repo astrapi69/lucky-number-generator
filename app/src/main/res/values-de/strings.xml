@@ -61,5 +61,6 @@
     <string name="default_numbers_to_draw">5</string>
     <string name="drawdate">Ziehung</string>
     <string name="title_activity_about">Über</string>
+    <string name="one_empty_space"> </string>
 
 </resources>

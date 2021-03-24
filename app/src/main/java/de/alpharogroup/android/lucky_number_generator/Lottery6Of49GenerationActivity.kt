@@ -67,10 +67,10 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         txtSuperSixNumber1Of49 = findViewById(R.id.superSixNumber1Of49)
         txtDrawDate = findViewById(R.id.drawDate)
         txtDrawDate.inputType = InputType.TYPE_NULL
-        EditTextDatePicker(
+        EditTextDateTimePicker(
             txtDrawDate,
             this,
-            Constants.DEFAULT_DATE_FORMAT
+            Constants.DEFAULT_DATE_TIME_FORMAT
         )
 
     }
@@ -94,7 +94,7 @@ class Lottery6Of49GenerationActivity : AppCompatActivity() {
         val max = 6
         val volume = 49
         val currentDrawDateValue: String = txtDrawDate.text.toString()
-        val currentDrawDate: Date = Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_FORMAT)
+        val currentDrawDate: Date = Extensions.parseToDate(currentDrawDateValue, Constants.DEFAULT_DATE_TIME_FORMAT)
         val secureRandom: SecureRandom = newSecureRandom(currentDrawDate)
         val lotteryNumbers = DrawLotteryNumbersFactory.draw(max, volume, secureRandom)
         val superNumber =
