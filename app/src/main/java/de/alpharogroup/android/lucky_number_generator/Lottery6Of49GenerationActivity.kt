@@ -19,11 +19,7 @@ import de.alpharogroup.lottery.drawing.DrawLotteryNumbersFactory
 import de.alpharogroup.lottery.drawing.DrawSuperNumbersFactory
 import de.alpharogroup.random.number.RandomIntFactory
 import java.security.SecureRandom
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
-
 
 class Lottery6Of49GenerationActivity : AppCompatActivity() {
 
