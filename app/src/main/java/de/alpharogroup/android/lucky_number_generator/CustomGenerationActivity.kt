@@ -183,7 +183,7 @@ class CustomGenerationActivity : AppCompatActivity() {
         )
         viewModel?.insert(lotteryNumberCount)
         val drawFromMultiMapString = drawFromMultiMap.toString()
-        val intent = Intent(this, CustomGenerationResultActivity::class.java).apply {
+        val intent = Intent(this, GenerationResultActivity::class.java).apply {
             putExtra(LUCKY_NUMBERS, drawFromMultiMapString.removeFirstAndLastCharacter())
         }
         startActivity(intent)
