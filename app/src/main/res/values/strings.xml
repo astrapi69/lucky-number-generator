@@ -39,6 +39,7 @@
     <string name="validation_not_empty">Field is required</string>
     <string name="validation_is_between_1_50">Field should be a number between 1 till 50</string>
     <string name="validation_is_between_1_100">Field should be a number between 1 till 100</string>
+    <string name="validation_is_between_1_5000">Field should be a number between 1 till 5000</string>
     <string name="validation_max_greater_than_min">Maximum number have to be greater the minimum number</string>
     <string name="custom_generated_lucky_numbers">Your custom generated numbers</string>
     <string name="lottery_number_count_label">Saved numbers</string>

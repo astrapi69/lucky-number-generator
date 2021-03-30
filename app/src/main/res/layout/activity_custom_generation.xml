@@ -185,4 +185,15 @@
         app:layout_constraintStart_toEndOf="@+id/lbl_draw_date_custom"
         app:layout_constraintTop_toBottomOf="@+id/lbl_iterations" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="354dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/btn_generate_my_lucky_cg_numbers" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
