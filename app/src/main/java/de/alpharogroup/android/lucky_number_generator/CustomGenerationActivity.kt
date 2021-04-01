@@ -50,7 +50,6 @@ class CustomGenerationActivity : AppCompatActivity() {
             onBackPressed()
             return true
         }
-        btn_generate_my_lucky_cg_numbers.isEnabled = true
         return super.onOptionsItemSelected(item)
     }
 
