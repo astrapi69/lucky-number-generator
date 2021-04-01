@@ -63,15 +63,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:30.0.0"
+    implementation "com.android.support:design:30.0.0"
+    implementation "com.android.support:multidex:$multidexVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation("io.github.astrapi69:android-datetime:$androidDatetimeVersion")
     implementation "androidx.legacy:legacy-support-v4:$androidxLegacySupportV4Version"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$androidxNavigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$androidxNavigationVersion"
-    implementation "com.android.support:appcompat-v7:30.0.0"
-    implementation "com.android.support:design:30.0.0"
-    implementation "com.android.support:multidex:1.0.3"
     implementation "de.alpharogroup:lottery-core:$lotteryVersion"
     implementation "de.alpharogroup:lottery-data:$lotteryVersion"
     implementation "de.alpharogroup:randomizer-core:$randomizerVersion"
@@ -85,25 +85,20 @@ dependencies {
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "org.apache.commons:commons-lang3:$commonsLang3Version"
     implementation "org.apache.commons:commons-collections4:$commonsCollections4Version"
-    testImplementation "junit:junit:4.13.2"
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
     // Room Database with Rx
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:1.2.0"
-    implementation "androidx.core:core-ktx:1.3.2"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$androidxLifecycleVersion"
-    androidTestImplementation "androidx.arch.core:core-testing:$androidxArchVersion"
     // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"
     // Coroutines
@@ -111,7 +106,11 @@ dependencies {
     // UI
     implementation "com.google.android.material:material:$materialVersion"
     // Testing
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation("androidx.test.ext:junit:$androidxJunitVersion")
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
 
 }
