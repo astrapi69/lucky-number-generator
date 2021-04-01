@@ -3,7 +3,7 @@ apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
     buildFeatures {
         viewBinding = true
@@ -13,7 +13,7 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 6
         versionName "6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -69,8 +69,8 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$androidxNavigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$androidxNavigationVersion"
-    implementation "com.android.support:appcompat-v7:29.0.0"
-    implementation "com.android.support:design:29.0.0"
+    implementation "com.android.support:appcompat-v7:30.0.0"
+    implementation "com.android.support:design:30.0.0"
     implementation "com.android.support:multidex:1.0.3"
     implementation "de.alpharogroup:lottery-core:$lotteryVersion"
     implementation "de.alpharogroup:lottery-data:$lotteryVersion"
@@ -102,7 +102,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$androidxLifecycleVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$androidxArchVersion"
     // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"

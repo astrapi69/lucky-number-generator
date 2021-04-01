@@ -1,6 +1,5 @@
 package de.alpharogroup.android.lucky_number_generator
 
-import android.app.ActionBar.LayoutParams
 import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -34,23 +33,22 @@ class GenerationResultActivity : AppCompatActivity() {
     }
 
     private fun onInitialize() {
-        luckyNumbers = intent.getStringExtra(CustomGenerationActivity.LUCKY_NUMBERS)
+        luckyNumbers = intent.getStringExtra(CustomGenerationActivity.LUCKY_NUMBERS).toString()
         val replaceWithoutSpaces = luckyNumbers.replace(" ", "")
             .split(",")
 
-        val lm = findViewById<View>(R.id.linearLayoutGenerationResult) as LinearLayout
-
-        val params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
-        )
         val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-
         val density = resources.displayMetrics.density
         val dpWidth: Float = displayMetrics.widthPixels / density
         val horizontalBallsFit = (dpWidth / 60).toInt()
-        val chunks = replaceWithoutSpaces.chunked(horizontalBallsFit)
+        var chunks: List<List<String>>
+        if(0<horizontalBallsFit) {
+            chunks = replaceWithoutSpaces.chunked(horizontalBallsFit)
+        } else {
+            chunks = replaceWithoutSpaces.chunked(replaceWithoutSpaces.size)
+        }
 
+        val lm = findViewById<View>(R.id.linearLayoutGenerationResult) as LinearLayout
         for (chunk in chunks) {
             val ll = LinearLayout(this)
             ll.orientation = LinearLayout.HORIZONTAL
