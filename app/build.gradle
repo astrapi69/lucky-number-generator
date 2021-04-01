@@ -108,6 +108,7 @@ dependencies {
     // Testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation("androidx.test.ext:junit:$androidxJunitVersion")
+    androidTestImplementation("androidx.test.ext:junit-ktx:$androidxJunitVersion")
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
