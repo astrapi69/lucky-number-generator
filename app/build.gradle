@@ -59,6 +59,9 @@ android {
     packagingOptions {
         exclude "META-INF/atomicfu.kotlin_module"
     }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
 }
 
 dependencies {
