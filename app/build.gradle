@@ -47,8 +47,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     lintOptions {
         abortOnError false
@@ -66,55 +66,54 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:30.0.0"
-    implementation "com.android.support:design:30.0.0"
-    implementation "com.android.support:multidex:$multidexVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation("com.android.support:appcompat-v7:30.0.0")
+    implementation("com.android.support:design:30.0.0")
+    implementation("com.android.support:multidex:$multidexVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("io.github.astrapi69:android-datetime:$androidDatetimeVersion")
-    implementation "androidx.legacy:legacy-support-v4:$androidxLegacySupportV4Version"
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.navigation:navigation-fragment-ktx:$androidxNavigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$androidxNavigationVersion"
-    implementation "de.alpharogroup:lottery-core:$lotteryVersion"
-    implementation "de.alpharogroup:lottery-data:$lotteryVersion"
-    implementation "de.alpharogroup:randomizer-core:$randomizerVersion"
-    implementation "de.alpharogroup:randomizer-data:$randomizerVersion"
-    implementation "de.alpharogroup:silly-collections:$sillyCollectionsVersion"
-    implementation "de.alpharogroup:jobj-compare:$jobjCompareVersion"
-    implementation "de.alpharogroup:silly-strings:$sillyStringsVersion"
-    implementation "de.alpharogroup:silly-math:$sillyMathVersion"
-    implementation "de.alpharogroup:silly-beans:$sillyBeansVersion"
-    implementation "de.alpharogroup:jobj-core:$jobjCoreVersion"
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "org.apache.commons:commons-lang3:$commonsLang3Version"
-    implementation "org.apache.commons:commons-collections4:$commonsCollections4Version"
+    implementation("androidx.legacy:legacy-support-v4:$androidxLegacySupportV4Version")
+    implementation("com.google.android.material:material:$materialVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$androidxNavigationVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$androidxNavigationVersion")
+    implementation("de.alpharogroup:lottery-core:$lotteryVersion")
+    implementation("de.alpharogroup:lottery-data:$lotteryVersion")
+    implementation("de.alpharogroup:randomizer-core:$randomizerVersion")
+    implementation("de.alpharogroup:randomizer-data:$randomizerVersion")
+    implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
+    implementation("de.alpharogroup:jobj-compare:$jobjCompareVersion")
+    implementation("de.alpharogroup:silly-strings:$sillyStringsVersion")
+    implementation("de.alpharogroup:silly-math:$sillyMathVersion")
+    implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("com.google.code.gson:gson:$gsonVersion")
+    implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
+    implementation("org.apache.commons:commons-collections4:$commonsCollections4Version")
     // Room Database with Rx
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-rxjava2:$roomVersion")
+    implementation("io.reactivex.rxjava2:rxandroid:$rxandroidVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion")
+    implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.core:core-ktx:$coreKtxVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintlayoutVersion")
+    implementation("androidx.recyclerview:recyclerview:$recyclerviewVersion")
     // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$androidxLifecycleVersion"
+    implementation("androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-common-java8:$androidxLifecycleVersion")
     // ViewModel Kotlin support
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion")
     // Coroutines
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
     // UI
-    implementation "com.google.android.material:material:$materialVersion"
+    implementation("com.google.android.material:material:$materialVersion")
     // Testing
-    testImplementation "junit:junit:$junitVersion"
+    testImplementation("junit:junit:$junitVersion")
     androidTestImplementation("androidx.test.ext:junit:$androidxJunitVersion")
     androidTestImplementation("androidx.test.ext:junit-ktx:$androidxJunitVersion")
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
-    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"
-
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoCoreVersion")
+    androidTestImplementation("androidx.arch.core:core-testing:$coreTestingVersion")
+    androidTestImplementation("androidx.room:room-testing:$roomVersion")
 
 }
