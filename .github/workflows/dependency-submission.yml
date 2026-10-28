@@ -35,4 +35,7 @@ jobs:
         with:
           # The graph plugin registers its resolving task once the projects are evaluated, which
           # configure-on-demand does not wait for
-          additional-arguments: -Dorg.gradle.configureondemand=false
+          # The build reads its Android release signing configuration (store file, store password, key
+          # alias, key password) while configuring; the graph needs none, so placeholders let it
+          # configure
+          additional-arguments: -Dorg.gradle.configureondemand=false -Prelease.lucky.numbers.store.file=unused -Prelease.lucky.numbers.store.password=unused -Prelease.lucky.numbers.key.alias=unused -Prelease.lucky.numbers.key.password=unused
